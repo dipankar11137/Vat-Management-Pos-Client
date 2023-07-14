@@ -1,20 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
-import {
-  FaHome,
-  FaPeopleArrows,
-  FaEdit,
-  FaSignOutAlt,
-  FaUserAlt,
-} from "react-icons/fa";
-import { BsFillTelephoneFill } from "react-icons/bs";
-import "../../CSS/DashboardStyle.css";
-import cargo from "../../../Images/Cargo logo/cargo1.png";
-import { useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../../firebase.init";
-import { signOut } from "firebase/auth";
+import { signOut } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { BsFillTelephoneFill } from 'react-icons/bs';
+import { FaHome, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
+import { Link, Outlet } from 'react-router-dom';
+import cargo from '../../../Images/Cargo logo/cargo1.png';
+import auth from '../../../firebase.init';
+import '../../CSS/DashboardStyle.css';
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -23,13 +15,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetch(`http://localhost:5000/user/${authUser?.email}`)
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
+      .then(res => res.json())
+      .then(data => setUsers(data));
   }, [users, authUser?.email]);
 
   const handleToggle = () => {
-    const navigation = document.querySelector(".navigation");
-    navigation.classList.toggle("active");
+    const navigation = document.querySelector('.navigation');
+    navigation.classList.toggle('active');
   };
 
   const handleSignOut = () => {
@@ -50,8 +42,8 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side navigation ">
             <label for="dashboard-sidebar" className="drawer-overlay "></label>
-            <ul className="  ">
-              <li style={{ marginLeft: "-12px", marginBottom: "100px" }}>
+            <ul className=" ">
+              <li style={{ marginLeft: '-12px', marginBottom: '50px' }}>
                 <Link to="/" className="aLink flex justify-center">
                   <img
                     className="h-20 w-20 rounded-full"
@@ -64,7 +56,7 @@ const Dashboard = () => {
               <li>
                 <Link className="aLink" to="/">
                   <span className="icon  ">
-                    <FaHome className="text-4xl mt-3 ml-2" />
+                    <FaHome className="text-2xl mt-3 ml-2 pt-1" />
                   </span>
                   <span className="title hover:animate-pulse font-bold ">
                     Home
@@ -72,27 +64,20 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li>
-                <Link className="aLink" to="/appointment">
-                  <span className="icon">
-                    <FaPeopleArrows className="text-4xl mt-3 ml-2" />
+                <Link className="aLink" to="/qrCode">
+                  <span className="icon  ">
+                    <FaHome className="text-2xl mt-3 ml-2 pt-1" />
                   </span>
-                  <span className="title">Booking</span>
+                  <span className="title hover:animate-pulse font-bold ">
+                    Home
+                  </span>
                 </Link>
               </li>
-              {user.email === "abc@def.com" && (
-                <li>
-                  <Link className="aLink" to="/booking">
-                    <span className="icon">
-                      <FaEdit className="text-4xl mt-3 ml-2" />
-                    </span>
-                    <span className="title">Manage Booking</span>
-                  </Link>
-                </li>
-              )}
-              <li className="mt-52">
+
+              <li className="mt-20">
                 <Link className="aLink" to="/contact">
                   <span className="icon">
-                    <BsFillTelephoneFill className="text-4xl mt-3 ml-2" />
+                    <BsFillTelephoneFill className="text-2xl mt-3 ml-2 pt-1" />
                   </span>
                   <span className="title">Contact</span>
                 </Link>
@@ -100,7 +85,7 @@ const Dashboard = () => {
               <li className="">
                 <Link className="aLink" to="/profile">
                   <span className="icon">
-                    <FaUserAlt className="text-4xl mt-3 ml-2" />
+                    <FaUserAlt className="text-2xl mt-3 ml-2 pt-1" />
                   </span>
                   <span className="title">Profile</span>
                 </Link>
@@ -108,7 +93,7 @@ const Dashboard = () => {
               <li>
                 <Link onClick={handleSignOut} className="aLink ">
                   <span className="icon">
-                    <FaSignOutAlt className="text-4xl mt-3 ml-2" />
+                    <FaSignOutAlt className="text-2xl mt-3 ml-2 pt-1" />
                   </span>
                   <span className="title">Sign Out</span>
                 </Link>
