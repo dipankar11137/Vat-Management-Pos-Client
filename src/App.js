@@ -10,6 +10,7 @@ import Bookings from './Components/Pages/Dashboard/Boooking/Bookings';
 import Contact from './Components/Pages/Dashboard/Contact.js/Contact';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import Profile from './Components/Pages/Dashboard/Profile/Profile';
+import QRCodeScanner from './Components/Pages/Dashboard/QR Code/QRCodeScanner';
 import Home from './Components/Pages/Home/Home';
 import NotFound from './Components/Share/NotFound';
 
@@ -33,7 +34,7 @@ function App() {
         >
           <Route index element={<Home />} />
           <Route path="booking" element={<Bookings />} />
-
+          <Route path="qrCode" element={<QRCodeScanner />} />
           <Route path="profile" element={<Profile />} />
           <Route path="contact" element={<Contact />} />
         </Route>
