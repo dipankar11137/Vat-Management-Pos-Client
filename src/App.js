@@ -6,6 +6,7 @@ import './App.css';
 import CreateAccount from './Components/Login/CreateAccount';
 import Login from './Components/Login/Login';
 import RequireAuth from './Components/Login/RequireAUth';
+import AddProduct from './Components/Pages/Dashboard/Add Product/AddProduct';
 import AllProducts from './Components/Pages/Dashboard/All Product/AllProducts';
 import Bookings from './Components/Pages/Dashboard/Boooking/Bookings';
 import Contact from './Components/Pages/Dashboard/Contact.js/Contact';
@@ -13,6 +14,7 @@ import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import Profile from './Components/Pages/Dashboard/Profile/Profile';
 import QRCodeScanner from './Components/Pages/Dashboard/QR Code/QRCodeScanner';
 import Home from './Components/Pages/Home/Home';
+import Pdf from './Components/Pages/Pdf/Pdf';
 import NotFound from './Components/Share/NotFound';
 
 function App() {
@@ -36,9 +38,11 @@ function App() {
           <Route index element={<Home />} />
           <Route path="booking" element={<Bookings />} />
           <Route path="qrCode" element={<QRCodeScanner />} />
+          <Route path="addProduct" element={<AddProduct />} />
           <Route path="allProduct" element={<AllProducts />} />
           <Route path="profile" element={<Profile />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="pdf" element={<Pdf />} />
         </Route>
         {/* Dashboard End */}
       </Routes>

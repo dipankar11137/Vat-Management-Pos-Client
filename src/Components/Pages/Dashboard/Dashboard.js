@@ -2,8 +2,8 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiFillCamera } from 'react-icons/ai';
-import { BsFillTelephoneFill } from 'react-icons/bs';
-import { FaHome, FaProductHunt, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
+import { FaHome, FaProductHunt, FaSignOutAlt } from 'react-icons/fa';
+import { MdAddchart } from 'react-icons/md';
 import { Link, Outlet } from 'react-router-dom';
 import pos from '../../../Images/Cargo logo/pos1.png';
 import auth from '../../../firebase.init';
@@ -80,6 +80,16 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li>
+                <Link className="aLink" to="/addProduct">
+                  <span className="icon  ">
+                    <MdAddchart className="text-2xl mt-4 ml-2 pt-1" />
+                  </span>
+                  <span className="title hover:animate-pulse font-bold ">
+                    Add Product
+                  </span>
+                </Link>
+              </li>
+              <li>
                 <Link className="aLink" to="/allProduct">
                   <span className="icon  ">
                     <FaProductHunt className="text-2xl mt-4 ml-2 pt-1" />
@@ -90,7 +100,7 @@ const Dashboard = () => {
                 </Link>
               </li>
 
-              <li className="mt-20">
+              {/* <li className="mt-20">
                 <Link className="aLink" to="/contact">
                   <span className="icon">
                     <BsFillTelephoneFill className="text-2xl mt-3 ml-2 pt-1" />
@@ -105,8 +115,8 @@ const Dashboard = () => {
                   </span>
                   <span className="title">Profile</span>
                 </Link>
-              </li>
-              <li>
+              </li> */}
+              <li className="mt-20">
                 <Link onClick={handleSignOut} className="aLink ">
                   <span className="icon">
                     <FaSignOutAlt className="text-2xl mt-3 ml-2 pt-1" />
