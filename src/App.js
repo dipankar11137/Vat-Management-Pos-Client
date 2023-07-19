@@ -6,6 +6,7 @@ import './App.css';
 import CreateAccount from './Components/Login/CreateAccount';
 import Login from './Components/Login/Login';
 import RequireAuth from './Components/Login/RequireAUth';
+import AllProducts from './Components/Pages/Dashboard/All Product/AllProducts';
 import Bookings from './Components/Pages/Dashboard/Boooking/Bookings';
 import Contact from './Components/Pages/Dashboard/Contact.js/Contact';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
@@ -35,6 +36,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="booking" element={<Bookings />} />
           <Route path="qrCode" element={<QRCodeScanner />} />
+          <Route path="allProduct" element={<AllProducts />} />
           <Route path="profile" element={<Profile />} />
           <Route path="contact" element={<Contact />} />
         </Route>

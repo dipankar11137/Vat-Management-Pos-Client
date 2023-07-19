@@ -7,7 +7,7 @@ const QRCodeScanner = () => {
   const [data, setData] = useState(false);
   const [open, setOpen] = useState(false);
   const handleSubmit = () => {
-    setData(false);
+    setData('');
     setOpen(false);
   };
   return (

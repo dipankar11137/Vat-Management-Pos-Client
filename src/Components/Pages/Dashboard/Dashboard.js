@@ -1,10 +1,11 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { AiFillCamera } from 'react-icons/ai';
 import { BsFillTelephoneFill } from 'react-icons/bs';
-import { FaHome, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
+import { FaHome, FaProductHunt, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
 import { Link, Outlet } from 'react-router-dom';
-import cargo from '../../../Images/Cargo logo/cargo1.png';
+import pos from '../../../Images/Cargo logo/pos1.png';
 import auth from '../../../firebase.init';
 import '../../CSS/DashboardStyle.css';
 
@@ -47,7 +48,7 @@ const Dashboard = () => {
                 <Link to="/" className="aLink flex justify-center">
                   <img
                     className="h-20 w-20 rounded-full"
-                    src={users[0]?.img || cargo}
+                    src={users[0]?.img || pos}
                     alt=""
                   />
                 </Link>
@@ -56,7 +57,7 @@ const Dashboard = () => {
               <li>
                 <Link className="aLink" to="/">
                   <span className="icon  ">
-                    <FaHome className="text-2xl mt-3 ml-2 pt-1" />
+                    <FaHome className="text-2xl mt-3 ml-2 pt-2" />
                   </span>
                   <span className="title hover:animate-pulse font-bold ">
                     Home
@@ -66,10 +67,25 @@ const Dashboard = () => {
               <li>
                 <Link className="aLink" to="/qrCode">
                   <span className="icon  ">
-                    <FaHome className="text-2xl mt-3 ml-2 pt-1" />
+                    {/* <img
+                      className=" h-9 w-9 rounded-full mt-3 hover:ml-2"
+                      src={scan}
+                      alt="Scan"
+                    /> */}
+                    <AiFillCamera className="text-2xl mt-4 ml-2 pt-1" />
                   </span>
                   <span className="title hover:animate-pulse font-bold ">
-                    Home
+                    Scan Qr
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link className="aLink" to="/allProduct">
+                  <span className="icon  ">
+                    <FaProductHunt className="text-2xl mt-4 ml-2 pt-1" />
+                  </span>
+                  <span className="title hover:animate-pulse font-bold ">
+                    All Product
                   </span>
                 </Link>
               </li>
