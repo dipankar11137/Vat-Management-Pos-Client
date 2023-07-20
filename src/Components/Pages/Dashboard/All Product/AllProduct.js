@@ -1,6 +1,13 @@
 import React from 'react';
 import { FaEdit } from 'react-icons/fa';
-const AllProduct = ({ product, index, handleRestock, handleDecrease }) => {
+const AllProduct = ({
+  product,
+  index,
+  handleEdit,
+  singleProduct,
+  handleRestock,
+  handleDecrease,
+}) => {
   return (
     <tr>
       <th className="bg-slate-800">{index}</th>
@@ -14,7 +21,7 @@ const AllProduct = ({ product, index, handleRestock, handleDecrease }) => {
       <td className="bg-slate-800">
         {/* <button className="btn btn-primary btn-sm">Increase</button> */}
         <label
-          // onClick={() => handleEdit(blood?._id)}
+          onClick={() => handleEdit(product?._id)}
           for="my-modal-3"
           className="btn btn-primary text-white  modal-button"
         >
@@ -33,12 +40,12 @@ const AllProduct = ({ product, index, handleRestock, handleDecrease }) => {
             <div>
               <div className="card w-96 bg-base-100 ">
                 <div className="card-body appleProducts-center text-center">
-                  <h1 className="text-2xl font-bold">
-                    {/* Name : {singleBlood.name} */}
+                  <h1 className="text-2xl font-bold text-black">
+                    Name : {singleProduct?.name}
                   </h1>
                   <img
                     className="mask mask-hexagon-2 "
-                    // src={singleBlood?.img}
+                    src={singleProduct?.img}
                     alt=""
                   />
                   <form onSubmit={handleRestock}>
@@ -65,7 +72,7 @@ const AllProduct = ({ product, index, handleRestock, handleDecrease }) => {
       <td className="bg-slate-800">
         {/* <button className="btn btn-accent btn-sm">Decrease</button> */}
         <label
-          // onClick={() => handleEdit(blood?._id)}
+          onClick={() => handleEdit(product?._id)}
           for="my-modal-4"
           className="btn btn-accent btn-sm text-white  modal-button"
         >
@@ -85,7 +92,7 @@ const AllProduct = ({ product, index, handleRestock, handleDecrease }) => {
               <div className="card w-96 bg-base-100 ">
                 <div className="card-body appleProducts-center text-center">
                   <h1 className="text-2xl font-bold">
-                    {/* Name : {singleBlood.name} */}
+                    Name : {singleProduct?.name}
                   </h1>
                   <form onSubmit={handleDecrease}>
                     <input
