@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { AiFillCamera } from 'react-icons/ai';
 import { CgPushChevronUpR } from 'react-icons/cg';
 import { QrReader } from 'react-qr-reader';
+import { toast } from 'react-toastify';
+import BookProducts from '../Book Product/BookProducts';
 
 const QRCodeScanner = () => {
   const [data, setData] = useState(false);
@@ -15,8 +17,20 @@ const QRCodeScanner = () => {
   const handleSubmit = () => {
     const bookData = { ...bookProduct, bookQuantity: 1 };
     console.log(bookData);
-    setData('');
+
     setOpen(false);
+    fetch(`http://localhost:5000/booking`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(bookData),
+    })
+      .then(res => res.json())
+      .then(data => {
+        toast.success('Successfully Add This ');
+        setData('');
+      });
   };
   return (
     <div className="mt-14">
@@ -81,8 +95,12 @@ const QRCodeScanner = () => {
           </div>
         )}
       </div> */}
-      <h1>{data}</h1>
-      <h1> hello : {bookProduct?.name}</h1>
+      <div>
+        {' '}
+        <h1>{data}</h1>
+        <h1> hello : {bookProduct?.name}</h1>
+        <BookProducts />
+      </div>
     </div>
   );
 };
