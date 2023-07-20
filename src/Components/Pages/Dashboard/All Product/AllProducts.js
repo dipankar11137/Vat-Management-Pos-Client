@@ -63,40 +63,56 @@ const AllProducts = () => {
       event.target.reset();
     }
   };
-  return (
-    <div>
-      <div className="overflow-x-auto p-2">
-        <table className="table table-xs  text-white w-full  text-center">
-          <thead>
-            <tr>
-              <th className="bg-blue-900"></th>
-              <th className="bg-blue-900"></th>
-              <th className="bg-blue-900">Name</th>
-              <th className="bg-blue-900">Product Id</th>
-              <th className="bg-blue-900">Quantity</th>
-              <th className="bg-blue-900">Price</th>
-              <th className="bg-blue-900">Increase Quantity </th>
-              <th className="bg-blue-900">Decrease Quantity</th>
-              <th className="bg-blue-900">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product, index) => (
-              <AllProduct
-                key={product._id}
-                product={product}
-                index={index + 1}
-                handleEdit={handleEdit}
-                singleProduct={singleProduct}
-                handleRestock={handleRestock}
-                handleDecrease={handleDecrease}
-              ></AllProduct>
-            ))}
-          </tbody>
-        </table>
+    const handleDelete = id => {
+      const proceed = window.confirm('Are You Sure ?');
+      if (proceed) {
+        const url = `http://localhost:5000/product/${id}`;
+        fetch(url, {
+          method: 'DELETE',
+        })
+          .then(res => res.json())
+          .then(data => {
+            const remaining = products.filter(product => product._id !== id);
+            setProducts(remaining);
+            toast.success('Successfully Delete');
+          });
+      }
+    };
+    return (
+      <div>
+        <div className="overflow-x-auto p-2">
+          <table className="table table-xs  text-white w-full  text-center">
+            <thead>
+              <tr>
+                <th className="bg-blue-900"></th>
+                <th className="bg-blue-900"></th>
+                <th className="bg-blue-900">Name</th>
+                <th className="bg-blue-900">Product Id</th>
+                <th className="bg-blue-900">Quantity</th>
+                <th className="bg-blue-900">Price</th>
+                <th className="bg-blue-900">Increase Quantity </th>
+                <th className="bg-blue-900">Decrease Quantity</th>
+                <th className="bg-blue-900">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product, index) => (
+                <AllProduct
+                  key={product._id}
+                  product={product}
+                  index={index + 1}
+                  handleEdit={handleEdit}
+                  singleProduct={singleProduct}
+                  handleRestock={handleRestock}
+                  handleDecrease={handleDecrease}
+                  handleDelete={handleDelete}
+                ></AllProduct>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default AllProducts;

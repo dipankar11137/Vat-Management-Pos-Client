@@ -7,6 +7,7 @@ const AllProduct = ({
   singleProduct,
   handleRestock,
   handleDecrease,
+  handleDelete,
 }) => {
   return (
     <tr>
@@ -95,6 +96,8 @@ const AllProduct = ({
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               width: '100%',
+              backdropFilter: 'blur(5px)',
+              WebkitBackdropFilter: 'blur(5px)',
             }}
             className="modal-box relative  "
           >
@@ -110,21 +113,23 @@ const AllProduct = ({
                   <h1 className="text-2xl font-bold">
                     Name : {singleProduct?.name}
                   </h1>
-                  <form onSubmit={handleDecrease}>
-                    <input
-                      type="number"
-                      name="quantity"
-                      id=""
-                      placeholder="Enter a Number"
-                      className="input input-bordered input-error hover:border-lime-500 text-black"
-                    />
+                  <div className="shadow-blue-900 shadow-2xl">
+                    <form onSubmit={handleDecrease}>
+                      <input
+                        type="number"
+                        name="quantity"
+                        id=""
+                        placeholder="Enter a Number"
+                        className="input input-bordered input-error hover:border-lime-500 text-black"
+                      />
 
-                    <input
-                      type="submit"
-                      className=" ml-3 btn mt-2 btn-accent pt-1 text-white  font-bold rounded-lg"
-                      value="Decrease"
-                    />
-                  </form>
+                      <input
+                        type="submit"
+                        className=" ml-3 btn mt-2 btn-accent pt-1 text-white  font-bold rounded-lg"
+                        value="Decrease"
+                      />
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -132,7 +137,12 @@ const AllProduct = ({
         </div>
       </td>
       <td className="bg-slate-800">
-        <button className="btn btn-secondary btn-sm">Delete</button>
+        <button
+          onClick={() => handleDelete(product?._id)}
+          className="btn btn-secondary btn-sm"
+        >
+          Delete
+        </button>
       </td>
     </tr>
   );
