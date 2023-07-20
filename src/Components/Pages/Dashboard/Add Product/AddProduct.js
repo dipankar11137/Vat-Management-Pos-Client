@@ -28,7 +28,7 @@ const AddProduct = () => {
       .then(res => res.json())
       .then(imageData => {
         const image = imageData.data.url;
-        const changeUrl = { ...data, service: service, img: image };
+        const changeUrl = { ...data, img: image };
         console.log(changeUrl);
 
         fetch(`http://localhost:5000/allProduct`, {

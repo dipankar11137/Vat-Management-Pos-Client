@@ -1,10 +1,26 @@
 import React from 'react';
 
-const AllProduct = () => {
+const AllProduct = ({ product, index }) => {
   return (
-    <div>
-      <h1>Product</h1>
-    </div>
+    <tr>
+      <th>{index}</th>
+      <th>
+        <img className="h-14 w-14 rounded-full" src={product?.img} alt="" />
+      </th>
+      <td>{product?.name}</td>
+      <td>{product?.pId}</td>
+      <td>{product?.quantity}</td>
+      <td>{product?.price}</td>
+      <td>
+        <button>Increase</button>
+      </td>
+      <td>
+        <button>Decrease</button>
+      </td>
+      <td>
+        <button>Delete</button>
+      </td>
+    </tr>
   );
 };
 
