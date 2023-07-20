@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiFillCamera } from 'react-icons/ai';
 import { CgPushChevronUpR } from 'react-icons/cg';
 import { QrReader } from 'react-qr-reader';
@@ -6,7 +6,15 @@ import { QrReader } from 'react-qr-reader';
 const QRCodeScanner = () => {
   const [data, setData] = useState(false);
   const [open, setOpen] = useState(false);
+  const [bookProduct, setBookProduct] = useState({});
+  useEffect(() => {
+    fetch(`http://localhost:5000/allProduct/${data}`)
+      .then(res => res.json())
+      .then(data => setBookProduct(data));
+  }, [bookProduct, data]);
   const handleSubmit = () => {
+    const bookData = { ...bookProduct, bookQuantity: 1 };
+    console.log(bookData);
     setData('');
     setOpen(false);
   };
@@ -30,7 +38,7 @@ const QRCodeScanner = () => {
                       }
 
                       if (!!error) {
-                        console.info(error);
+                        // console.info(error);
                       }
                     }}
                     style={{ width: '100%' }}
@@ -74,6 +82,7 @@ const QRCodeScanner = () => {
         )}
       </div> */}
       <h1>{data}</h1>
+      <h1> hello : {bookProduct?.name}</h1>
     </div>
   );
 };
