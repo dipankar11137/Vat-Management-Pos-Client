@@ -1,24 +1,115 @@
 import React from 'react';
-
-const AllProduct = ({ product, index }) => {
+import { FaEdit } from 'react-icons/fa';
+const AllProduct = ({ product, index, handleRestock, handleDecrease }) => {
   return (
     <tr>
-      <th>{index}</th>
-      <th>
-        <img className="h-14 w-14 rounded-full" src={product?.img} alt="" />
+      <th className="bg-slate-800">{index}</th>
+      <th className="bg-slate-800">
+        <img className="h-10 w-10  rounded-full" src={product?.img} alt="" />
       </th>
-      <td>{product?.name}</td>
-      <td>{product?.pId}</td>
-      <td>{product?.quantity}</td>
-      <td>{product?.price}</td>
-      <td>
-        <button>Increase</button>
+      <td className="bg-slate-800">{product?.name}</td>
+      <td className="bg-slate-800">{product?.pId}</td>
+      <td className="bg-slate-800">{product?.quantity}</td>
+      <td className="bg-slate-800">{product?.price}</td>
+      <td className="bg-slate-800">
+        {/* <button className="btn btn-primary btn-sm">Increase</button> */}
+        <label
+          // onClick={() => handleEdit(blood?._id)}
+          for="my-modal-3"
+          className="btn btn-primary text-white  modal-button"
+        >
+          <FaEdit className="text-2xl" />
+        </label>
+
+        <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box relative">
+            <label
+              for="my-modal-3"
+              className="btn btn-primary  text-white  btn-sm btn-circle absolute right-2 top-2"
+            >
+              ✕
+            </label>
+            <div>
+              <div className="card w-96 bg-base-100 ">
+                <div className="card-body appleProducts-center text-center">
+                  <h1 className="text-2xl font-bold">
+                    {/* Name : {singleBlood.name} */}
+                  </h1>
+                  <img
+                    className="mask mask-hexagon-2 "
+                    // src={singleBlood?.img}
+                    alt=""
+                  />
+                  <form onSubmit={handleRestock}>
+                    <input
+                      type="number"
+                      name="quantity"
+                      id=""
+                      placeholder="Enter a Number"
+                      className="input input-bordered input-error hover:border-lime-500"
+                    />
+
+                    <input
+                      type="submit"
+                      className=" ml-3 btn mt-2 btn-primary pt-1 text-white  font-bold rounded-lg"
+                      value="Restock"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </td>
-      <td>
-        <button>Decrease</button>
+      <td className="bg-slate-800">
+        {/* <button className="btn btn-accent btn-sm">Decrease</button> */}
+        <label
+          // onClick={() => handleEdit(blood?._id)}
+          for="my-modal-4"
+          className="btn btn-accent btn-sm text-white  modal-button"
+        >
+          Decrease
+        </label>
+
+        <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box relative">
+            <label
+              for="my-modal-4"
+              className="btn btn-accent  text-white  btn-sm btn-circle absolute right-2 top-2 "
+            >
+              ✕
+            </label>
+            <div>
+              <div className="card w-96 bg-base-100 ">
+                <div className="card-body appleProducts-center text-center">
+                  <h1 className="text-2xl font-bold">
+                    {/* Name : {singleBlood.name} */}
+                  </h1>
+                  <form onSubmit={handleDecrease}>
+                    <input
+                      type="number"
+                      name="quantity"
+                      id=""
+                      placeholder="Enter a Number"
+                      className="input input-bordered input-error hover:border-lime-500"
+                    />
+
+                    <input
+                      type="submit"
+                      className=" ml-3 btn mt-2 btn-accent pt-1 text-white  font-bold rounded-lg"
+                      value="Decrease"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </td>
-      <td>
-        <button>Delete</button>
+      <td className="bg-slate-800">
+        <button className="btn btn-secondary btn-sm">Delete</button>
       </td>
     </tr>
   );

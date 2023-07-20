@@ -10,19 +10,19 @@ const AllProducts = () => {
   }, [products]);
   return (
     <div>
-      <div className="overflow-x-auto ">
-        <table className="table table-xs bg-blue-500 text-black w-full">
+      <div className="overflow-x-auto p-2">
+        <table className="table table-xs  text-white w-full  text-center">
           <thead>
             <tr>
-              <th></th>
-              <th></th>
-              <th>Name</th>
-              <th>Product Id</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Increase Quantity </th>
-              <th>Decrease Quantity</th>
-              <th>Delete</th>
+              <th className="bg-blue-900"></th>
+              <th className="bg-blue-900"></th>
+              <th className="bg-blue-900">Name</th>
+              <th className="bg-blue-900">Product Id</th>
+              <th className="bg-blue-900">Quantity</th>
+              <th className="bg-blue-900">Price</th>
+              <th className="bg-blue-900">Increase Quantity </th>
+              <th className="bg-blue-900">Decrease Quantity</th>
+              <th className="bg-blue-900">Delete</th>
             </tr>
           </thead>
           <tbody>
