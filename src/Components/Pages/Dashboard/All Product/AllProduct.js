@@ -30,7 +30,15 @@ const AllProduct = ({
 
         <input type="checkbox" id="my-modal-3" className="modal-toggle" />
         <div className="modal">
-          <div className="modal-box relative">
+          <div
+            style={{
+              backgroundImage: `url(${singleProduct?.img})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              width: '100%',
+            }}
+            className="modal-box relative "
+          >
             <label
               for="my-modal-3"
               className="btn btn-primary  text-white  btn-sm btn-circle absolute right-2 top-2"
@@ -38,13 +46,13 @@ const AllProduct = ({
               ✕
             </label>
             <div>
-              <div className="card w-96 bg-base-100 ">
+              <div className="card w-96  ">
                 <div className="card-body appleProducts-center text-center">
-                  <h1 className="text-2xl font-bold text-black">
+                  <h1 className="text-2xl font-bold ">
                     Name : {singleProduct?.name}
                   </h1>
                   <img
-                    className="mask mask-hexagon-2 "
+                    className="mask mask-hexagon-2 shadow-2xl"
                     src={singleProduct?.img}
                     alt=""
                   />
@@ -54,7 +62,7 @@ const AllProduct = ({
                       name="quantity"
                       id=""
                       placeholder="Enter a Number"
-                      className="input input-bordered input-error hover:border-lime-500"
+                      className="input input-bordered input-error hover:border-lime-500 text-black"
                     />
 
                     <input
@@ -81,7 +89,15 @@ const AllProduct = ({
 
         <input type="checkbox" id="my-modal-4" className="modal-toggle" />
         <div className="modal">
-          <div className="modal-box relative">
+          <div
+            style={{
+              backgroundImage: `url(${singleProduct?.img})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              width: '100%',
+            }}
+            className="modal-box relative  "
+          >
             <label
               for="my-modal-4"
               className="btn btn-accent  text-white  btn-sm btn-circle absolute right-2 top-2 "
@@ -89,7 +105,7 @@ const AllProduct = ({
               ✕
             </label>
             <div>
-              <div className="card w-96 bg-base-100 ">
+              <div className="card w-96  ">
                 <div className="card-body appleProducts-center text-center">
                   <h1 className="text-2xl font-bold">
                     Name : {singleProduct?.name}
@@ -100,7 +116,7 @@ const AllProduct = ({
                       name="quantity"
                       id=""
                       placeholder="Enter a Number"
-                      className="input input-bordered input-error hover:border-lime-500"
+                      className="input input-bordered input-error hover:border-lime-500 text-black"
                     />
 
                     <input
