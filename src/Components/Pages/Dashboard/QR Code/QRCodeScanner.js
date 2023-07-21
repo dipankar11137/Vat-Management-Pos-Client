@@ -8,6 +8,7 @@ import BookProducts from '../Book Product/BookProducts';
 const QRCodeScanner = () => {
   const [data, setData] = useState(false);
   const [open, setOpen] = useState(false);
+  const [quantity, setQuantity] = useState(false);
   const [bookProduct, setBookProduct] = useState({});
   useEffect(() => {
     fetch(`http://localhost:5000/allProduct/${data}`)
@@ -15,11 +16,16 @@ const QRCodeScanner = () => {
       .then(data => setBookProduct(data));
   }, [bookProduct, data]);
   const handleSubmit = () => {
-    const bookData = { ...bookProduct, bookQuantity: 1 };
-    console.log(bookData);
+    const bookData = {
+      name: bookProduct?.name,
+      pId: bookProduct?.pId,
+      price: bookProduct?.price,
+      img: bookProduct?.img,
+      bookQuantity: quantity || 1,
+    };
+    // console.log(bookData);
 
-    setOpen(false);
-    fetch(`http://localhost:5000/booking`, {
+    fetch(`http://localhost:5000/bookings`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -28,8 +34,10 @@ const QRCodeScanner = () => {
     })
       .then(res => res.json())
       .then(data => {
-        toast.success('Successfully Add This ');
+        setOpen(false);
         setData('');
+        toast.success('Successfully Add This ');
+        setData(false);
       });
   };
   return (
@@ -41,7 +49,13 @@ const QRCodeScanner = () => {
           {open ? (
             <>
               {data ? (
-                <h1>{data}</h1>
+                <div>
+                  <img
+                    className="w-full h-[300px] rounded-xl mt-2"
+                    src={bookProduct?.img}
+                    alt=""
+                  />
+                </div>
               ) : (
                 <div>
                   <QrReader
@@ -99,6 +113,21 @@ const QRCodeScanner = () => {
         {' '}
         <h1>{data}</h1>
         <h1> hello : {bookProduct?.name}</h1>
+        <div>
+          <select
+            onClick={e => setQuantity(e.target.value)}
+            className="select select-primary w-full max-w-xs text-black"
+          >
+            <option disabled selected>
+              Select your quantity
+            </option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4 </option>
+            <option>5</option>
+          </select>
+        </div>
         <BookProducts />
       </div>
     </div>

@@ -4,9 +4,11 @@ const BookProducts = () => {
   const [bookings, setBookings] = useState([]);
 
   const totalPrice = bookings.reduce(
-    (acc, product) => acc + parseInt(product.price),
+    (acc, product) => acc + parseInt(product.price) * product.bookQuantity,
     0
   );
+  const vat = totalPrice * 0.08;
+  const newTotalPrice = totalPrice + vat;
 
   useEffect(() => {
     fetch(`http://localhost:5000/booking`)
@@ -33,9 +35,9 @@ const BookProducts = () => {
                 </tr>
               </thead>
               <tbody>
-                {bookings.map(product => (
+                {bookings.map((product, index) => (
                   <tr>
-                    <th className="bg-slate-700">1</th>
+                    <th className="bg-slate-700">{index + 1}</th>
                     <th className="bg-slate-700">
                       <img
                         className="h-10 w-10 rounded-full"
@@ -52,7 +54,14 @@ const BookProducts = () => {
             </table>
           </div>
         </div>
-        <div className="bg-red-500 h-[200px] w-[300px]"></div>
+        <div className="bg-slate-700 h-[200px] w-[300px]">
+          <div>
+            <h1>Price : {totalPrice}</h1>
+            <h1>Vat : {vat}</h1>
+            <hr />
+            <h1>Total Price : {newTotalPrice}</h1>
+          </div>
+        </div>
       </div>
     </div>
   );
