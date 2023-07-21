@@ -48,7 +48,7 @@ const BookProducts = () => {
         });
     }
   };
-  console.log(bookings);
+  // console.log(bookings);
   return (
     <>
       {bookings.length === 0 ? (

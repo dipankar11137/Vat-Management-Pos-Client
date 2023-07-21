@@ -9,17 +9,20 @@ const QRCodeScanner = () => {
   const [data, setData] = useState(false);
   const [open, setOpen] = useState(false);
   const [quantity, setQuantity] = useState(false);
+  // const [getData, setGetData] = useState(false);
   const [bookProduct, setBookProduct] = useState({});
   const quantityOptions = Array.from(
     { length: parseInt(bookProduct?.quantity) },
     (_, index) => index + 1
   );
+
   useEffect(() => {
-    fetch(`http://localhost:5000/allProduct/${data}`)
+    fetch(`http://localhost:5000/allProducts/${data}`)
       .then(res => res.json())
       .then(data => setBookProduct(data));
-  }, [bookProduct, data]);
+  }, [data]);
   const handleSubmit = () => {
+    setOpen(false);
     const bookData = {
       name: bookProduct?.name,
       pId: bookProduct?.pId,
@@ -39,27 +42,39 @@ const QRCodeScanner = () => {
       .then(res => res.json())
       .then(data => {
         setOpen(false);
-        setData('');
+
         toast.success('Successfully Add This ');
         setData(false);
       });
   };
+  console.log(bookProduct);
   return (
     <div className="mt-14">
       <div className="flex justify-center gap-10">
         <div className="w-[400px] h-[350px] bg--300 rounded-xl shadow-2xl shadow-blue-800">
           {' '}
-          <h1 className="text-2xl text-center font-bold py-1">Scan Here</h1>
+          <h1 className="text-2xl text-center font-bold py-1">
+            {' '}
+            {bookProduct?.name || 'Scan Here'}
+          </h1>
           {open ? (
             <>
               {data ? (
-                <div>
-                  <img
-                    className="w-full h-[300px] rounded-xl mt-2"
-                    src={bookProduct?.img}
-                    alt=""
-                  />
-                </div>
+                <>
+                  {bookProduct === {} ? (
+                    <div className="text-white">
+                      <h1>Please Provide a valid qr</h1>
+                    </div>
+                  ) : (
+                    <div>
+                      <img
+                        className="w-full h-[300px] rounded-xl mt-2"
+                        src={bookProduct?.img}
+                        alt=""
+                      />
+                    </div>
+                  )}
+                </>
               ) : (
                 <div>
                   <QrReader
@@ -114,23 +129,25 @@ const QRCodeScanner = () => {
         )}
       </div> */}
       <div>
-        {' '}
-        <div className="flex justify-center ml-96">
-          <select
-            value={quantity}
-            onChange={e => setQuantity(e.target.value)}
-            className="select select-primary max-w-xs text-white bg-slate-700 w-52"
-          >
-            <option disabled selected>
-              Select your quantity
-            </option>
-            {quantityOptions.map(quantity => (
-              <option key={quantity} value={quantity}>
-                {quantity}
+        {data && (
+          <div className="flex justify-center ml-96">
+            <select
+              value={quantity}
+              onChange={e => setQuantity(e.target.value)}
+              className="select select-primary max-w-xs text-white bg-slate-700 w-52"
+            >
+              <option disabled selected>
+                Select your quantity
               </option>
-            ))}
-          </select>
-        </div>
+              {quantityOptions.map(quantity => (
+                <option key={quantity} value={quantity}>
+                  {quantity}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         <BookProducts />
       </div>
     </div>
