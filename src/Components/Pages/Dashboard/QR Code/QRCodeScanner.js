@@ -10,6 +10,10 @@ const QRCodeScanner = () => {
   const [open, setOpen] = useState(false);
   const [quantity, setQuantity] = useState(false);
   const [bookProduct, setBookProduct] = useState({});
+  const quantityOptions = Array.from(
+    { length: parseInt(bookProduct?.quantity) },
+    (_, index) => index + 1
+  );
   useEffect(() => {
     fetch(`http://localhost:5000/allProduct/${data}`)
       .then(res => res.json())
@@ -111,21 +115,20 @@ const QRCodeScanner = () => {
       </div> */}
       <div>
         {' '}
-        <h1>{data}</h1>
-        <h1> hello : {bookProduct?.name}</h1>
-        <div>
+        <div className="flex justify-center ml-96">
           <select
-            onClick={e => setQuantity(e.target.value)}
-            className="select select-primary w-full max-w-xs text-black"
+            value={quantity}
+            onChange={e => setQuantity(e.target.value)}
+            className="select select-primary max-w-xs text-white bg-slate-700 w-52"
           >
             <option disabled selected>
               Select your quantity
             </option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4 </option>
-            <option>5</option>
+            {quantityOptions.map(quantity => (
+              <option key={quantity} value={quantity}>
+                {quantity}
+              </option>
+            ))}
           </select>
         </div>
         <BookProducts />
