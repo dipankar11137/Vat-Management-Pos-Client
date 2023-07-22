@@ -78,7 +78,7 @@
   /* background: white; */
 }
 .navigation ul li:hover {
-  background: white;
+  background: #00001a;
 }
 .navigation ul li:nth-child(1) {
   top: 20px;
@@ -95,7 +95,7 @@
   height: 20px;
   background: transparent;
   border-bottom-right-radius: 20px;
-  box-shadow: 7.5px 7.5px 0 7.5px white;
+  box-shadow: 7.5px 7.5px 0 7.5px #00001a;
 }
 .navigation ul li:not(:first-child):hover::after {
   content: "";
@@ -106,7 +106,7 @@
   height: 20px;
   background: transparent;
   border-top-right-radius: 20px;
-  box-shadow: 7.5px -7.5px 0 7.5px white;
+  box-shadow: 7.5px -7.5px 0 7.5px #00001a;
 }
 
 .navigation ul li a {
@@ -127,7 +127,7 @@
 } */
 
 .navigation ul li:hover:not(:first-child) a {
-  color: black;
+  color: white;
 }
 
 .icon {
