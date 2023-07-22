@@ -21,8 +21,22 @@ const QRCodeScanner = () => {
       .then(res => res.json())
       .then(data => setBookProduct(data));
   }, [data]);
-  const handleUpdateQuantity = id => {
-    console.log(id);
+  const handleUpdateQuantity = (id, quantity) => {
+    console.log(id, quantity);
+    const newQuantity = parseInt(bookProduct?.quantity) - parseInt(quantity);
+    // console.log(newQuantity);
+    const updateQuantity = { quantity: newQuantity };
+    fetch(`http://localhost:5000/productId/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(updateQuantity),
+    })
+      .then(res => res.json())
+      .then(data => {
+        toast.success('Restock Is Successfully');
+      });
   };
   const handleSubmit = () => {
     if (bookProduct?.name) {
@@ -44,16 +58,17 @@ const QRCodeScanner = () => {
       })
         .then(res => res.json())
         .then(data => {
+          handleUpdateQuantity(bookProduct._id, bookData?.bookQuantity);
           setOpen(false);
 
           toast.success('Successfully Add This ');
           setData(false);
-          window.location.reload(false);
+          // window.location.reload(false);
         });
     } else {
       setOpen(false);
-
-      window.location.reload(false);
+      setOpen(false);
+      // window.location.reload(false);
     }
   };
 
