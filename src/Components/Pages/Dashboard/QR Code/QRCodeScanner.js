@@ -22,31 +22,38 @@ const QRCodeScanner = () => {
       .then(data => setBookProduct(data));
   }, [data]);
   const handleSubmit = () => {
-    setOpen(false);
-    const bookData = {
-      name: bookProduct?.name,
-      pId: bookProduct?.pId,
-      price: bookProduct?.price,
-      img: bookProduct?.img,
-      bookQuantity: quantity || 1,
-    };
-    // console.log(bookData);
+    if (bookProduct?.name) {
+      const bookData = {
+        name: bookProduct?.name,
+        pId: bookProduct?.pId,
+        price: bookProduct?.price,
+        img: bookProduct?.img,
+        bookQuantity: quantity || 1,
+      };
+      // console.log(bookData);
 
-    fetch(`http://localhost:5000/bookings`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(bookData),
-    })
-      .then(res => res.json())
-      .then(data => {
-        setOpen(false);
+      fetch(`http://localhost:5000/bookings`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(bookData),
+      })
+        .then(res => res.json())
+        .then(data => {
+          setOpen(false);
 
-        toast.success('Successfully Add This ');
-        setData(false);
-      });
+          toast.success('Successfully Add This ');
+          setData(false);
+          window.location.reload(false);
+        });
+    } else {
+      setOpen(false);
+
+      window.location.reload(false);
+    }
   };
+
   console.log(bookProduct);
   return (
     <div className="mt-14">
@@ -61,17 +68,17 @@ const QRCodeScanner = () => {
             <>
               {data ? (
                 <>
-                  {bookProduct === {} ? (
-                    <div className="text-white">
-                      <h1>Please Provide a valid qr</h1>
-                    </div>
-                  ) : (
+                  {bookProduct?.name ? (
                     <div>
                       <img
                         className="w-full h-[300px] rounded-xl mt-2"
                         src={bookProduct?.img}
                         alt=""
                       />
+                    </div>
+                  ) : (
+                    <div className="text-white">
+                      <h1>Please Provide a valid qr</h1>
                     </div>
                   )}
                 </>
@@ -82,6 +89,8 @@ const QRCodeScanner = () => {
                     onResult={(result, error) => {
                       if (!!result) {
                         setData(result?.text);
+                        // console.log(result);
+                        // console.log(result?.text);
                       }
 
                       if (!!error) {
@@ -106,11 +115,14 @@ const QRCodeScanner = () => {
         <div className="flex justify-center items-center w-[350px] h-[300px]  rounded-xl shadow-2xl shadow-blue-800 mt-10">
           <div>
             {data ? (
-              <button onClick={handleSubmit} className="btn btn-primary">
+              <>
                 {' '}
-                <CgPushChevronUpR className="mr-1 text-xl" />
-                submit
-              </button>
+                <button onClick={handleSubmit} className="btn btn-primary">
+                  {' '}
+                  <CgPushChevronUpR className="mr-1 text-xl" />
+                  submit
+                </button>
+              </>
             ) : (
               <button onClick={() => setOpen(true)} className="btn btn-primary">
                 {' '}
