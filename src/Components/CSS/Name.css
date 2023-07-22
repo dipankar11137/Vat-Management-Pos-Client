@@ -2,15 +2,15 @@
   display: flex;
   justify-content: center;
   padding: 20px;
-  background-color: rgb(22, 2, 53);
+  background-color: #e9b31e;
 }
 
 .textH1 {
   position: relative;
   font-size: 5vw;
   font-weight: bold;
-  color: rgb(22, 2, 53);
-  -webkit-text-stroke: 0.3vw #3b383d;
+  color:#CFC007;
+  -webkit-text-stroke: 0.3vw #e9b31e;
 }
 
 .textH1::before {
@@ -20,7 +20,7 @@
   left: 0;
   width: 0%;
   height: 100%;
-  color: #e9b31e;
+  color:blue;
   -webkit-text-stroke: 0vw #383d52;
   /* border-radius: 2px solid #01fe87; */
   overflow: hidden;
