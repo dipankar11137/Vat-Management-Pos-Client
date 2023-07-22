@@ -12,7 +12,6 @@ const BookProducts = () => {
   );
   const vat = totalPrice * 0.08;
   const newTotalPrice = totalPrice + vat;
-
   useEffect(() => {
     fetch(`http://localhost:5000/booking`)
       .then(res => res.json())
@@ -20,6 +19,7 @@ const BookProducts = () => {
   }, [bookings]);
   const document = React.useRef();
   const pdfFilename = bookings?.name ? `${bookings.name}.pdf` : 'document.pdf';
+
   const handleRemove = id => {
     const proceed = window.confirm('Are You Sure ?');
     if (proceed) {
@@ -31,7 +31,8 @@ const BookProducts = () => {
         .then(data => {
           const remaining = bookings.filter(product => product._id !== id);
           setBookings(remaining);
-          toast.success('Successfully Delete');
+
+          toast.success('Successfully Remove');
         });
     }
   };

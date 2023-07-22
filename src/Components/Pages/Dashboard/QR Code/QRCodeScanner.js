@@ -22,7 +22,7 @@ const QRCodeScanner = () => {
       .then(data => setBookProduct(data));
   }, [data]);
   const handleUpdateQuantity = (id, quantity) => {
-    console.log(id, quantity);
+    // console.log(id, quantity);
     const newQuantity = parseInt(bookProduct?.quantity) - parseInt(quantity);
     // console.log(newQuantity);
     const updateQuantity = { quantity: newQuantity };
