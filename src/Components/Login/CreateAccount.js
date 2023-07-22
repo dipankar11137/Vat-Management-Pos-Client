@@ -1,15 +1,14 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import React from "react";
+import React from 'react';
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
   useUpdateProfile,
-} from "react-firebase-hooks/auth";
-import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import auth from "../../firebase.init";
-import login from "../../Images/Login/login.jpg";
+} from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import vat from '../../Images/Login/vat.PNG';
+import auth from '../../firebase.init';
 
 const CreateAccount = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -26,14 +25,14 @@ const CreateAccount = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  let from = location.state?.from?.pathname || "/";
+  let from = location.state?.from?.pathname || '/';
 
   let signInError;
   if (gUser) {
-    navigate("/");
+    navigate('/');
   }
 
-  const createDBUser = (data) => {
+  const createDBUser = data => {
     // console.log(data);
     const updateData = {
       name: data.name,
@@ -43,46 +42,46 @@ const CreateAccount = () => {
       shipCode: data.shipCode,
     };
     fetch(`http://localhost:5000/create-user/${data?.email}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify(updateData),
     })
-      .then((res) => res.json())
-      .then((data) => {});
+      .then(res => res.json())
+      .then(data => {});
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     createUserWithEmailAndPassword(data.email, data.password);
     updateProfile({ displayName: data.name });
     createDBUser(data);
-    toast.success("Updated profile");
-    navigate("/");
+    toast.success('Updated profile');
+    navigate('/');
   };
   return (
     <div
-      style={{
-        backgroundImage: `url("https://www.exfreight.com/wp-content/uploads/2021/07/iStock-1208766085.jpg")`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        width: "100%",
-        height: "900px",
-      }}
+      // style={{
+      //   backgroundImage: `url(${vat})`,
+      //   backgroundPosition: 'center',
+      //   backgroundSize: 'cover',
+      //   backgroundRepeat: 'no-repeat',
+      //   width: '100%',
+      //   // height: '900px',
+      // }}
       className="flex justify-center  bg-slate-700"
     >
-      <div className="flex justify-center items-center  mt-4">
+      <div className="flex justify-center   mt-4">
         <div
           style={{
-            backgroundImage: `url("https://c4.wallpaperflare.com/wallpaper/545/189/286/ship-pirate-ship-boat-sailing-ship-wallpaper-preview.jpg")`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            width: "100%",
-            height: "100vp",
+            backgroundImage: `url(${vat})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',
+            height: '100vp',
           }}
-          className="card w-96 shadow-2xl bg-violet-200"
+          className="card w-96 shadow-2xl shadow-blue-900 bg-violet-200"
         >
           <div className="card-body text-white">
             <h2 className="text-center text-2xl font-bold mb-5">SignUp</h2>
@@ -95,19 +94,19 @@ const CreateAccount = () => {
                       <span className="label-text text-white">Name</span>
                     </label>
                     <input
-                      style={{ width: "400px" }}
+                      style={{ width: '400px' }}
                       type="text"
                       placeholder="Your name"
                       className="input input-bordered bg-white w-full   "
-                      {...register("name", {
+                      {...register('name', {
                         required: {
                           value: true,
-                          message: "Name is Required",
+                          message: 'Name is Required',
                         },
                       })}
                     />
                     <label className="label">
-                      {errors.name?.type === "required" && (
+                      {errors.name?.type === 'required' && (
                         <span className="label-text-alt text-red-500">
                           {errors.name.message}
                         </span>
@@ -123,24 +122,24 @@ const CreateAccount = () => {
                       type="email"
                       placeholder="Your Email"
                       className="input input-bordered bg-white w-full   "
-                      {...register("email", {
+                      {...register('email', {
                         required: {
                           value: true,
-                          message: "Email is Required",
+                          message: 'Email is Required',
                         },
                         pattern: {
                           value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                          message: "Provide a valid Email",
+                          message: 'Provide a valid Email',
                         },
                       })}
                     />
                     <label className="label">
-                      {errors.email?.type === "required" && (
+                      {errors.email?.type === 'required' && (
                         <span className="label-text-alt text-red-500">
                           {errors.email.message}
                         </span>
                       )}
-                      {errors.email?.type === "pattern" && (
+                      {errors.email?.type === 'pattern' && (
                         <span className="label-text-alt text-red-500">
                           {errors.email.message}
                         </span>
@@ -156,15 +155,15 @@ const CreateAccount = () => {
                       type="phone"
                       placeholder="Write Your Phone Number"
                       className="input input-bordered bg-white w-full   "
-                      {...register("phone", {
+                      {...register('phone', {
                         required: {
                           value: true,
-                          message: "Phone is Required",
+                          message: 'Phone is Required',
                         },
                       })}
                     />
                     <label className="label">
-                      {errors.phone?.type === "required" && (
+                      {errors.phone?.type === 'required' && (
                         <span className="label-text-alt text-red-500">
                           {errors.phone.message}
                         </span>
@@ -179,19 +178,19 @@ const CreateAccount = () => {
                       <span className="label-text text-white">Image</span>
                     </label>
                     <input
-                      style={{ width: "400px" }}
+                      style={{ width: '400px' }}
                       type="text"
                       placeholder="Your Phone URL"
                       className="input input-bordered bg-white w-full   "
-                      {...register("photo", {
+                      {...register('photo', {
                         required: {
                           value: true,
-                          message: "Photo is Required",
+                          message: 'Photo is Required',
                         },
                       })}
                     />
                     <label className="label">
-                      {errors.photo?.type === "required" && (
+                      {errors.photo?.type === 'required' && (
                         <span className="label-text-alt text-red-500">
                           {errors.photo.message}
                         </span>
@@ -204,19 +203,19 @@ const CreateAccount = () => {
                       <span className="label-text text-white">Ship Code</span>
                     </label>
                     <input
-                      style={{ width: "400px" }}
+                      style={{ width: '400px' }}
                       type="n"
                       placeholder="Your Ship Code"
                       className="input input-bordered bg-white w-full   "
-                      {...register("shipCode", {
+                      {...register('shipCode', {
                         required: {
                           value: true,
-                          message: "Ship is Required",
+                          message: 'Ship is Required',
                         },
                       })}
                     />
                     <label className="label">
-                      {errors.shipCode?.type === "required" && (
+                      {errors.shipCode?.type === 'required' && (
                         <span className="label-text-alt text-red-500">
                           {errors.shipCode.message}
                         </span>
@@ -232,24 +231,24 @@ const CreateAccount = () => {
                       type="password"
                       placeholder="Password"
                       className="input input-bordered text-black font-bold bg-white w-full   "
-                      {...register("password", {
+                      {...register('password', {
                         required: {
                           value: true,
-                          message: "Password is Required",
+                          message: 'Password is Required',
                         },
                         minLength: {
                           value: 6,
-                          message: "Must be 6 characters or longer",
+                          message: 'Must be 6 characters or longer',
                         },
                       })}
                     />
                     <label className="label">
-                      {errors.password?.type === "required" && (
+                      {errors.password?.type === 'required' && (
                         <span className="label-text-alt text-red-500">
                           {errors.password.message}
                         </span>
                       )}
-                      {errors.password?.type === "minLength" && (
+                      {errors.password?.type === 'minLength' && (
                         <span className="label-text-alt text-red-500">
                           {errors.password.message}
                         </span>
