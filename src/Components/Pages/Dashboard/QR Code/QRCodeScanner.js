@@ -35,7 +35,7 @@ const QRCodeScanner = () => {
     })
       .then(res => res.json())
       .then(data => {
-        toast.success('Restock Is Successfully');
+        // toast.success('Restock Is Successfully');
       });
   };
   const handleSubmit = () => {
@@ -63,12 +63,12 @@ const QRCodeScanner = () => {
 
           toast.success('Successfully Add This ');
           setData(false);
-          // window.location.reload(false);
+          window.location.reload(false);
         });
     } else {
       setOpen(false);
       setOpen(false);
-      // window.location.reload(false);
+      window.location.reload(false);
     }
   };
 

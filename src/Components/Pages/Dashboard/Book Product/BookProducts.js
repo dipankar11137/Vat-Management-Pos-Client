@@ -5,6 +5,8 @@ const ref = React.createRef();
 
 const BookProducts = () => {
   const [bookings, setBookings] = useState([]);
+  const [name, setName] = useState([]);
+  const [phone, setPhone] = useState([]);
 
   const totalPrice = bookings.reduce(
     (acc, product) => acc + parseInt(product.price) * product.bookQuantity,
@@ -56,7 +58,11 @@ const BookProducts = () => {
         <></>
       ) : (
         <div ref={document} className="flex">
-          <div className="mb-20 mx-20 mt-5">
+          <div className="mb-20 mx-20 mt-8">
+            <div className="text-xl mb-3 text-black">
+              <h1>Name : {name}</h1>
+              <h1>Phone : {phone}</h1>
+            </div>
             <div className=" gap-9">
               <div className=" ">
                 <div className="overflow-x-auto">
@@ -120,20 +126,38 @@ const BookProducts = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-end mt-40 gap-6 ml-10">
-            <button onClick={handleClear} className="btn btn-error ">
-              Clear
-            </button>{' '}
-            <ReactToPdf targetRef={document} filename={pdfFilename}>
-              {({ toPdf }) => (
-                <button
-                  className="bg-green-400 py-1 px-3 h-10 rounded-2xl text-white font-semibold"
-                  onClick={toPdf}
-                >
-                  Download PDF
-                </button>
-              )}
-            </ReactToPdf>
+          <div>
+            <div className="mt-8 ml-8">
+              <h1>Name : </h1>{' '}
+              <input
+                onChange={e => setName(e.target.value)}
+                className="rounded-md mb-2 pl-1 w-[250px] py-1 text-black"
+                placeholder="Enter Name"
+                type="text"
+              />
+              <h1>Phone</h1>
+              <input
+                onChange={e => setPhone(e.target.value)}
+                className="rounded-md mb-2 pl-1 py-1 w-[250px] text-black"
+                placeholder="Phone"
+                type="number"
+              />
+            </div>
+            <div className="flex justify-end mt-10 gap-6 ml-10">
+              <button onClick={handleClear} className="btn btn-error ">
+                Clear
+              </button>{' '}
+              <ReactToPdf targetRef={document} filename={pdfFilename}>
+                {({ toPdf }) => (
+                  <button
+                    className="bg-green-400 py-1 px-3 h-10 rounded-2xl text-white font-semibold"
+                    onClick={toPdf}
+                  >
+                    Download PDF
+                  </button>
+                )}
+              </ReactToPdf>
+            </div>
           </div>
         </div>
       )}
