@@ -104,16 +104,16 @@ const BookProducts = () => {
                 <div className="bg-slate-700 h-[170px] w-[300px] text-2xl p-4 rounded-xl mt-10">
                   <div className="flex">
                     <h1 className="w-36 font-bold">Price </h1>
-                    <h1>: {totalPrice}</h1>
+                    <h1>: {totalPrice.toFixed(2)}</h1>
                   </div>
                   <div className="flex mt-2 mb-2">
                     <h1 className="w-36 font-bold">Vat </h1>
-                    <h1>: {vat}</h1>
+                    <h1>: {vat.toFixed(2)}</h1>
                   </div>
                   <hr />
                   <div className="flex mt-2">
                     <h1 className="w-36 font-bold">Total Price </h1>
-                    <h1>: {newTotalPrice}</h1>
+                    <h1>: {newTotalPrice.toFixed(2)}</h1>
                   </div>
                 </div>
               </div>

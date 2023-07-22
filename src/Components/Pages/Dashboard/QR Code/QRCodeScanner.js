@@ -21,6 +21,9 @@ const QRCodeScanner = () => {
       .then(res => res.json())
       .then(data => setBookProduct(data));
   }, [data]);
+  const handleUpdateQuantity = id => {
+    console.log(id);
+  };
   const handleSubmit = () => {
     if (bookProduct?.name) {
       const bookData = {
@@ -77,8 +80,10 @@ const QRCodeScanner = () => {
                       />
                     </div>
                   ) : (
-                    <div className="text-white">
-                      <h1>Please Provide a valid qr</h1>
+                    <div className=" flex justify-center mt-20 text-red-500">
+                      <h1 className="text-3xl font-bold  animate-bounce">
+                        Please Provide a valid qr
+                      </h1>
                     </div>
                   )}
                 </>
