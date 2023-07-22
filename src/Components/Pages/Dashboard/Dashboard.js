@@ -141,7 +141,8 @@ const Dashboard = () => {
                   </Link>
                 </li>
               </ul>
-              <div onClick={handleToggle} className="toggle"></div>
+
+              <div onClick={handleToggle} className="toggle "></div>
             </div>
           </div>
         </div>
