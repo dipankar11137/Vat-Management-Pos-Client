@@ -235,13 +235,30 @@ const BookProducts = () => {
               <h1 className="text-xl text-center uppercase font-semibold">
                 Product exchange policy
               </h1>
-              <div>
+              <div className="text-sm mt-2">
                 <p>
-                  1. Products can be exchanged within [number of days] days from
-                  the date of purchase.
+                  1. Products can be exchanged within 7 days from the date of
+                  purchase.
+                </p>
+                <p>
+                  2. Wrong product: If the product received is not the one that
+                  was ordered.
+                </p>
+                <p>3. Perishable items such as food and beverages.</p>
+                <p>
+                  4. Personal hygiene products like cosmetics, toiletries, and
+                  undergarments.
+                </p>
+                <p>
+                  5. Products that have been used, altered, or damaged by the
+                  customer.
                 </p>
               </div>
             </div>
+            <hr className="mt-7" />
+            <h1 className="text-center font-semibold">
+              System By : Daffodil Pos Ltd . Tel : 0353981
+            </h1>
           </div>
           <div>
             <div className="mt-8 ml-8">
