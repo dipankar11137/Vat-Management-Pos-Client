@@ -9,6 +9,8 @@ const BookProducts = () => {
   const [phone, setPhone] = useState([]);
   const currentDate = new Date();
   const currentTime = new Date();
+  const date = currentDate.toDateString();
+  const time = currentTime.toLocaleTimeString();
 
   const totalPrice = bookings.reduce(
     (acc, product) => acc + parseInt(product.price) * product.bookQuantity,
@@ -87,11 +89,31 @@ const BookProducts = () => {
                 Invoice No : 0123072200004
               </h1>
               <div className="flex justify-between text-lg font-semibold">
-                <p>Date : {currentDate.toDateString()}</p>
-                <p>Time : {currentTime.toLocaleTimeString()}</p>
+                <p>Date : {date}</p>
+                <p>Time : {time}</p>
               </div>
-              <h1>Name : {name}</h1>
-              <h1>Phone : {phone}</h1>
+              <div className="text-sm">
+                <div className="flex">
+                  <h1 className="w-28 font-bold">Name </h1>
+                  <h1>: {name}</h1>
+                </div>
+                <div className="flex">
+                  <h1 className="w-28 font-bold">Address </h1>
+                  <h1>: </h1>
+                </div>
+                <div className="flex">
+                  <h1 className="w-28 font-bold">Mobile </h1>
+                  <h1>: {phone}</h1>
+                </div>
+                <div className="flex">
+                  <h1 className="w-28 font-bold">Sales Exec </h1>
+                  <h1>: Md Hasib Ahmed</h1>
+                </div>
+                <div className="flex">
+                  <h1 className="w-28 font-bold">Served By </h1>
+                  <h1>: Hasib</h1>
+                </div>
+              </div>
             </div>
             <div className=" gap-9">
               <div className=" ">
