@@ -57,9 +57,30 @@ const BookProducts = () => {
       {bookings.length === 0 ? (
         <></>
       ) : (
-        <div ref={document} className="flex">
-          <div className="mb-20 mx-20 mt-8">
+        <div ref={document} className="flex ">
+          <div className="mb-20 mx-20 mt-8 bg-white p-3 rounded-md">
             <div className="text-xl mb-3 text-black">
+              <h1 className="text-center font-bold text-3xl">
+                Vat Management System
+              </h1>
+              <h1 className="text-center font-semibold text-xl">
+                Daffodil International University
+              </h1>
+              <p className="text-sm font-semibold text-center">
+                Level # 03, Shop # 203, 204 Daffodil Tower, Dhanmondi
+              </p>
+              <p className="text-sm font-semibold text-center">Dhaka - 1205</p>
+              <p className="text-sm font-semibold text-center">
+                Government of the People's Republic Of Bangladesh
+              </p>
+
+              <p className="text-sm font-bold text-center">
+                National Board of Revenue
+              </p>
+              <div className="flex justify-between text-lg font-semibold">
+                <p>BIN: 111330010031</p>
+                <p>Mushak -6.3</p>
+              </div>
               <h1>Name : {name}</h1>
               <h1>Phone : {phone}</h1>
             </div>
