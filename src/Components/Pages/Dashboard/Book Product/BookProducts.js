@@ -7,6 +7,8 @@ const BookProducts = () => {
   const [bookings, setBookings] = useState([]);
   const [name, setName] = useState([]);
   const [phone, setPhone] = useState([]);
+  const currentDate = new Date();
+  const currentTime = new Date();
 
   const totalPrice = bookings.reduce(
     (acc, product) => acc + parseInt(product.price) * product.bookQuantity,
@@ -80,6 +82,13 @@ const BookProducts = () => {
               <div className="flex justify-between text-lg font-semibold">
                 <p>BIN: 111330010031</p>
                 <p>Mushak -6.3</p>
+              </div>
+              <h1 className="text-center border-2 border-black text-lg font-semibold">
+                Invoice No : 0123072200004
+              </h1>
+              <div className="flex justify-between text-lg font-semibold">
+                <p>Date : {currentDate.toDateString()}</p>
+                <p>Time : {currentTime.toLocaleTimeString()}</p>
               </div>
               <h1>Name : {name}</h1>
               <h1>Phone : {phone}</h1>
