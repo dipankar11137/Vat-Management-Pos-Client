@@ -5,20 +5,26 @@ const ref = React.createRef();
 
 const BookProducts = () => {
   const [bookings, setBookings] = useState([]);
-  const [name, setName] = useState([]);
-  const [phone, setPhone] = useState([]);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [vats, setVat] = useState(8);
+  const [discount, setDiscount] = useState(0);
+  const [specialDiscount, sentSDiscount] = useState(0);
+  const [paid, setPaid] = useState(false);
+
   const currentDate = new Date();
   const currentTime = new Date();
   const date = currentDate.toDateString();
   const time = currentTime.toLocaleTimeString();
 
-
   const totalPrice = bookings.reduce(
     (acc, product) => acc + parseInt(product.price) * product.bookQuantity,
     0
   );
-  const vat = totalPrice * 0.08;
-  const newTotalPrice = totalPrice + vat;
+  const vat = totalPrice * (vats / 100);
+  const newTotalPrice = totalPrice + vat - specialDiscount - discount;
+  const changeAmount = paid - newTotalPrice;
   useEffect(() => {
     fetch(`http://localhost:5000/booking`)
       .then(res => res.json())
@@ -100,7 +106,7 @@ const BookProducts = () => {
                 </div>
                 <div className="flex">
                   <h1 className="w-28 font-bold">Address </h1>
-                  <h1>: </h1>
+                  <h1>: {address}</h1>
                 </div>
                 <div className="flex">
                   <h1 className="w-28 font-bold">Mobile </h1>
@@ -183,11 +189,14 @@ const BookProducts = () => {
                 <div>
                   <div className="flex">
                     <h1 className="w-40 text-end">Discount : </h1>
-                    <h1 className="w-36 font-thin  text-end">0.00 </h1>
+                    <h1 className="w-36 font-thin  text-end">{discount}.00 </h1>
                   </div>
                   <div className="flex">
                     <h1 className="w-40 text-end">Special Discount : </h1>
-                    <h1 className="w-36 font-thin  text-end"> 0.00</h1>
+                    <h1 className="w-36 font-thin  text-end">
+                      {' '}
+                      {specialDiscount}.00
+                    </h1>
                   </div>
                   <div className="flex">
                     <h1 className="w-40 text-end">Vat : </h1>
@@ -204,12 +213,16 @@ const BookProducts = () => {
                   </div>
                   <div className="flex">
                     <h1 className="w-40 text-end">Paid Amount : </h1>
-                    <h1 className="w-36 font-thin  text-end"> </h1>
+                    <h1 className="w-36 font-thin  text-end"> {paid}.00</h1>
                   </div>
-                  <div className="flex">
-                    <h1 className="w-40 text-end">Change Amount : </h1>
-                    <h1 className="w-36 font-thin  text-end"> </h1>
-                  </div>
+                  {paid && (
+                    <div className="flex">
+                      <h1 className="w-40 text-end">Change Amount : </h1>
+                      <h1 className="w-36 font-thin  text-end">
+                        {changeAmount.toFixed(2)}{' '}
+                      </h1>
+                    </div>
+                  )}
                   <hr className="mt-1" />
                   <div className="flex">
                     <h1 className="w-40 text-end font-semibold">
@@ -261,21 +274,70 @@ const BookProducts = () => {
             </h1>
           </div>
           <div>
-            <div className="mt-8 ml-8">
-              <h1>Name : </h1>{' '}
-              <input
-                onChange={e => setName(e.target.value)}
-                className="rounded-md mb-2 pl-1 w-[250px] py-1 text-black"
-                placeholder="Enter Name"
-                type="text"
-              />
-              <h1>Phone</h1>
-              <input
-                onChange={e => setPhone(e.target.value)}
-                className="rounded-md mb-2 pl-1 py-1 w-[250px] text-black"
-                placeholder="Phone"
-                type="number"
-              />
+            <div className="mt-8 ml-8 text-white">
+              <div>
+                <h1>Name : </h1>{' '}
+                <input
+                  onChange={e => setName(e.target.value)}
+                  className="rounded-md mb-2 pl-1 w-[250px] py-1 text-black"
+                  placeholder="Enter Name"
+                  type="text"
+                />
+              </div>
+              <div>
+                <h1>Address : </h1>{' '}
+                <input
+                  onChange={e => setAddress(e.target.value)}
+                  className="rounded-md mb-2 pl-1 w-[250px] py-1 text-black"
+                  placeholder="Enter Address"
+                  type="text"
+                />
+              </div>
+              <div>
+                <h1>Phone :</h1>
+                <input
+                  onChange={e => setPhone(e.target.value)}
+                  className="rounded-md mb-2 pl-1 py-1 w-[250px] text-black"
+                  placeholder="Phone"
+                  type="number"
+                />
+              </div>
+              <div>
+                <h1>Vat :</h1>
+                <input
+                  onChange={e => setVat(e.target.value)}
+                  className="rounded-md mb-2 pl-1 py-1 w-[250px] text-black"
+                  placeholder="Vat Amount"
+                  type="number"
+                />
+              </div>
+              <div>
+                <h1>Discount :</h1>
+                <input
+                  onChange={e => setDiscount(e.target.value)}
+                  className="rounded-md mb-2 pl-1 py-1 w-[250px] text-black"
+                  placeholder="Discount Amount"
+                  type="number"
+                />
+              </div>
+              <div>
+                <h1>Special Discount :</h1>
+                <input
+                  onChange={e => sentSDiscount(e.target.value)}
+                  className="rounded-md mb-2 pl-1 py-1 w-[250px] text-black"
+                  placeholder="Enter  Special Discount"
+                  type="number"
+                />
+              </div>
+              <div className="mt-5">
+                <h1 className="text-xl font-bold text-center mb-2">Paid </h1>
+                <input
+                  onChange={e => setPaid(e.target.value)}
+                  className="rounded-md mb-2 pl-1 py-1 w-[250px] text-black"
+                  placeholder="Enter Paid Amount"
+                  type="number"
+                />
+              </div>
             </div>
             <div className="flex justify-end mt-10 gap-6 ml-10">
               <button onClick={handleClear} className="btn btn-error ">

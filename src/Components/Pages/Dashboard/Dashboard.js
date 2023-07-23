@@ -13,7 +13,7 @@ const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [authUser] = useAuthState(auth);
   const [users, setUsers] = useState([]);
-    const [selectedButton, setSelectedButton] = useState('');
+    const [selectedButton, setSelectedButton] = useState('Button 2');
 
     useEffect(() => {
       fetch(`http://localhost:5000/user/${authUser?.email}`)
