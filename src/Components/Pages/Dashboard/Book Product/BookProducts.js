@@ -12,6 +12,7 @@ const BookProducts = () => {
   const date = currentDate.toDateString();
   const time = currentTime.toLocaleTimeString();
 
+
   const totalPrice = bookings.reduce(
     (acc, product) => acc + parseInt(product.price) * product.bookQuantity,
     0
@@ -61,8 +62,8 @@ const BookProducts = () => {
       {bookings.length === 0 ? (
         <></>
       ) : (
-        <div ref={document} className="flex ">
-          <div className="mb-20 mx-20 mt-8 bg-white p-3 rounded-md">
+        <div ref={document} className="flex text-black">
+          <div className="mb-20 mx-20 mt-8 bg-white p-3 rounded-md pb-10">
             <div className="text-xl mb-3 text-black">
               <h1 className="text-center font-bold text-3xl">
                 Vat Management System
@@ -92,7 +93,7 @@ const BookProducts = () => {
                 <p>Date : {date}</p>
                 <p>Time : {time}</p>
               </div>
-              <div className="text-sm">
+              <div className="text-sm mb-2">
                 <div className="flex">
                   <h1 className="w-28 font-bold">Name </h1>
                   <h1>: {name}</h1>
@@ -115,66 +116,130 @@ const BookProducts = () => {
                 </div>
               </div>
             </div>
+            <hr />
             <div className=" gap-9">
               <div className=" ">
                 <div className="overflow-x-auto">
-                  <table className="table table-xs w-[600px] text-center">
+                  <table className="table table-xs w-[600px] text-center text-black">
                     <thead>
                       <tr>
-                        <th className="bg-blue-900">Index</th>
-                        <th className="bg-blue-900"></th>
-                        <th className="bg-blue-900">Name</th>
-                        <th className="bg-blue-900">Price</th>
-                        <th className="bg-blue-900">Quantity</th>
-                        <th className="bg-blue-900">Remove</th>
+                        <th className="bg-white">Index</th>
+                        <th className="bg-white"></th>
+                        <th className="bg-white">Name</th>
+                        <th className="bg-white">Quantity</th>
+                        <th className="bg-white">Price</th>
+                        <th className="bg-white">Amount</th>
                       </tr>
+                      <hr />
                     </thead>
+
                     <tbody>
                       {bookings.map((product, index) => (
                         <tr>
-                          <th className="bg-slate-700">{index + 1}</th>
-                          <th className="bg-slate-700">
+                          <th className="bg-white font-thin">{index + 1}</th>
+                          <th className="bg-white ">
                             <img
-                              className="h-10 w-10 rounded-full"
+                              className="h-8 w-8 rounded-full"
                               src={product?.img}
                               alt=""
                             />
                           </th>
-                          <th className="bg-slate-700">{product?.name}</th>
-                          <th className="bg-slate-700">{product?.price}</th>
-                          <th className="bg-slate-700">
+                          <th className="bg-white font-thin">
+                            {product?.name}
+                          </th>
+                          <th className="bg-white font-thin">
                             {product?.bookQuantity}
                           </th>
-                          <th className="bg-slate-700">
-                            <button
-                              onClick={() => handleRemove(product?._id)}
-                              className="btn  btn-error btn-xs"
-                            >
-                              Remove
-                            </button>
+                          <th className="bg-white font-thin">
+                            {product?.price}
+                          </th>
+                          <th className="bg-white font-thin text-end">
+                            {product?.bookQuantity * product?.price}.00
                           </th>
                         </tr>
                       ))}
                     </tbody>
                   </table>
+                  <p className="text-black uppercase text-lg font-thin">
+                    {' '}
+                    puple 5- bisque -slimfit- knitted- sqled
+                  </p>
                 </div>
               </div>
-              <div className="flex justify-end">
-                <div className="bg-slate-700 h-[170px] w-[300px] text-2xl p-4 rounded-xl mt-10">
+              <div>
+                <hr />
+                <div className="flex justify-end">
                   <div className="flex">
-                    <h1 className="w-36 font-bold">Price </h1>
-                    <h1>: {totalPrice.toFixed(2)}</h1>
-                  </div>
-                  <div className="flex mt-2 mb-2">
-                    <h1 className="w-36 font-bold">Vat </h1>
-                    <h1>: {vat.toFixed(2)}</h1>
-                  </div>
-                  <hr />
-                  <div className="flex mt-2">
-                    <h1 className="w-36 font-bold">Total Price </h1>
-                    <h1>: {newTotalPrice.toFixed(2)}</h1>
+                    <h1 className="w-40 text-end">Sub Total : </h1>
+                    <h1 className="w-36 font-thin text-end ">
+                      {totalPrice}.00
+                    </h1>
                   </div>
                 </div>
+                {/* <h1 className="text-end">Sub Total : {totalPrice}</h1> */}
+                <hr />
+              </div>
+              <div className="flex justify-end text-black mt-2">
+                <div>
+                  <div className="flex">
+                    <h1 className="w-40 text-end">Discount : </h1>
+                    <h1 className="w-36 font-thin  text-end">0.00 </h1>
+                  </div>
+                  <div className="flex">
+                    <h1 className="w-40 text-end">Special Discount : </h1>
+                    <h1 className="w-36 font-thin  text-end"> 0.00</h1>
+                  </div>
+                  <div className="flex">
+                    <h1 className="w-40 text-end">Vat : </h1>
+                    <h1 className="w-36 font-thin  text-end">
+                      {' '}
+                      {vat.toFixed(2)}
+                    </h1>
+                  </div>
+                  <div className="flex">
+                    <h1 className="w-40 text-end">Net Amount : </h1>
+                    <h1 className="w-36 font-thin  text-end">
+                      {newTotalPrice.toFixed(2)}{' '}
+                    </h1>
+                  </div>
+                  <div className="flex">
+                    <h1 className="w-40 text-end">Paid Amount : </h1>
+                    <h1 className="w-36 font-thin  text-end"> </h1>
+                  </div>
+                  <div className="flex">
+                    <h1 className="w-40 text-end">Change Amount : </h1>
+                    <h1 className="w-36 font-thin  text-end"> </h1>
+                  </div>
+                  <hr className="mt-1" />
+                  <div className="flex">
+                    <h1 className="w-40 text-end font-semibold">
+                      Description{' '}
+                    </h1>
+                    <h1 className="w-36 font-semibold  text-end"> Amount</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <hr />
+              <div className="flex justify-end">
+                <h1 className="w-40 text-end font-semibold">Cash </h1>
+                <h1 className="w-36 font-semibold  text-end">
+                  {' '}
+                  {newTotalPrice.toFixed(2)}{' '}
+                </h1>
+              </div>
+              <hr />
+            </div>
+            <div>
+              <h1 className="text-xl text-center uppercase font-semibold">
+                Product exchange policy
+              </h1>
+              <div>
+                <p>
+                  1. Products can be exchanged within [number of days] days from
+                  the date of purchase.
+                </p>
               </div>
             </div>
           </div>
