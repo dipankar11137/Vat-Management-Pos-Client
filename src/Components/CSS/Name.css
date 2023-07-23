@@ -8,7 +8,7 @@
 .textH1 {
   position: relative;
   font-size: 5vw;
-  font-weight: bold;
+  font-weight: 800;
   color:#CFC007;
   -webkit-text-stroke: 0.3vw #e9b31e;
 }
