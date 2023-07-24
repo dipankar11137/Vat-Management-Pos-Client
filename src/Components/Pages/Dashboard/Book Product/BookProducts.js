@@ -65,6 +65,7 @@ const BookProducts = () => {
       discount,
       specialDiscount,
       name,
+      vats,
     };
     // console.log(changeUrl);
     const proceed = window.confirm('Are You Sure ?');

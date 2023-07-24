@@ -30,13 +30,16 @@ const BuyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map(product => (
-              <BuyProduct key={product._id} product={product}></BuyProduct>
+            {products.map((product, index) => (
+              <BuyProduct
+                key={product._id}
+                product={product}
+                index={index + 1}
+              ></BuyProduct>
             ))}
           </tbody>
         </table>
       </div>
-      <BuyProduct />
     </div>
   );
 };
