@@ -37,22 +37,22 @@ const BookProducts = () => {
   const document = React.useRef();
   const pdfFilename = bookings?.name ? `${bookings.name}.pdf` : 'document.pdf';
 
-  const handleRemove = id => {
-    const proceed = window.confirm('Are You Sure ?');
-    if (proceed) {
-      const url = `http://localhost:5000/booking/${id}`;
-      fetch(url, {
-        method: 'DELETE',
-      })
-        .then(res => res.json())
-        .then(data => {
-          const remaining = bookings.filter(product => product._id !== id);
-          setBookings(remaining);
+  // const handleRemove = id => {
+  //   const proceed = window.confirm('Are You Sure ?');
+  //   if (proceed) {
+  //     const url = `http://localhost:5000/booking/${id}`;
+  //     fetch(url, {
+  //       method: 'DELETE',
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         const remaining = bookings.filter(product => product._id !== id);
+  //         setBookings(remaining);
 
-          toast.success('Successfully Remove');
-        });
-    }
-  };
+  //         toast.success('Successfully Remove');
+  //       });
+  //   }
+  // };
   const handleClear = () => {
     // console.log(bookings);
     const changeUrl = {
@@ -64,6 +64,7 @@ const BookProducts = () => {
       time,
       discount,
       specialDiscount,
+      name,
     };
     // console.log(changeUrl);
     const proceed = window.confirm('Are You Sure ?');
