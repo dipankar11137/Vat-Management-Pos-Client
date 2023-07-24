@@ -20,9 +20,12 @@ const BuyProducts = () => {
     (acc, product) => acc + product.bookings.length,
     0
   );
+  // pdf
+  const document = React.useRef();
+  const pdfFilename = products?.name ? `${products.name}.pdf` : 'document.pdf';
   return (
     <div>
-      <div className="overflow-x-auto p-2 ">
+      <div ref={document} className="overflow-x-auto p-2 ">
         <table className="table table-xs w-full text-xs text-black text-center">
           <thead>
             <tr>
@@ -72,6 +75,16 @@ const BuyProducts = () => {
                 {<h1>{totalPrice} .00</h1>}
               </h1>
             </div>
+            {/* <ReactToPdf targetRef={document} filename={pdfFilename}>
+              {({ toPdf }) => (
+                <button
+                  className="bg-green-300 py-1 px-3 h-10 rounded-2xl text-black font-semibold"
+                  onClick={toPdf}
+                >
+                  Download PDF
+                </button>
+              )}
+            </ReactToPdf> */}
           </div>
         </div>
       </div>

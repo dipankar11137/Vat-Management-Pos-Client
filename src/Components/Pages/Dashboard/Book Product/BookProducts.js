@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { IoMdDownload } from 'react-icons/io';
 import ReactToPdf from 'react-to-pdf';
 import { toast } from 'react-toastify';
 const ref = React.createRef();
@@ -369,16 +370,20 @@ const BookProducts = () => {
               </div>
             </div>
             <div className="flex justify-end mt-10 gap-6 ml-10">
-              <button onClick={handleClear} className="btn btn-error ">
+              <button
+                onClick={handleClear}
+                className="btn btn-accent text-white text-semibold"
+              >
                 Clear
               </button>{' '}
               <ReactToPdf targetRef={document} filename={pdfFilename}>
                 {({ toPdf }) => (
                   <button
-                    className="bg-green-400 py-1 px-3 h-10 rounded-2xl text-white font-semibold"
+                    className="btn btn-primary  py-1 px-3 h-10 rounded-2xl text-white font-semibold flex "
                     onClick={toPdf}
                   >
-                    Download PDF
+                    Download PDF{' '}
+                    <IoMdDownload className="text-xl mt-1 ml-2 text-blue-300 animate-bounce" />
                   </button>
                 )}
               </ReactToPdf>
