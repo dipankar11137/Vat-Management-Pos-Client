@@ -90,20 +90,8 @@ const BookProducts = () => {
             });
         });
     }
-
-    // const proceed = window.confirm('Are You Sure ?');
-    // if (proceed) {
-    //   const url = `http://localhost:5000/bookings`;
-    //   fetch(url, {
-    //     method: 'DELETE',
-    //   })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       toast.success('Successfully Clear');
-    //     });
-    // }
   };
-  // console.log(bookings);
+
   return (
     <>
       {bookings.length === 0 ? (
