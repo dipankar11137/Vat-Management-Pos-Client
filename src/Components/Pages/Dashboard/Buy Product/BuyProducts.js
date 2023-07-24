@@ -45,21 +45,21 @@ const BuyProducts = () => {
             ))}
           </tbody>
         </table>
-        <h1 className="bg-white text-black mt-3 text-end pr-40 font-bold text-xl underline">
+        <h1 className="bg-white text-black mt-3 text-end pr-52 font-bold text-xl underline">
           Total Amount :
         </h1>
         <div className="flex justify-end">
           <div className="bg-white text-black pt-4 pb-5 rounded-b-sm">
             <div className="flex">
-              <h1 className="w-40 text-end font-semibold">Total Price : </h1>
-              <h1 className="w-40 font-thin  text-end pr-2">
-                {<h1>{totalPrice} .00</h1>}
+              <h1 className="w-40 text-end font-semibold">Total Vat : </h1>
+              <h1 className="w-52 font-thin  text-end pr-2">
+                {<h1>{totalVat} .00</h1>}
               </h1>
             </div>
             <div className="flex">
-              <h1 className="w-40 text-end font-semibold">Total Vat : </h1>
-              <h1 className="w-40 font-thin  text-end pr-2">
-                {<h1>{totalVat} .00</h1>}
+              <h1 className="w-40 text-end font-semibold">Total Price : </h1>
+              <h1 className="w-52 font-thin  text-end pr-2">
+                {<h1>{totalPrice} .00</h1>}
               </h1>
             </div>
           </div>
