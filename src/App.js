@@ -9,6 +9,7 @@ import RequireAuth from './Components/Login/RequireAUth';
 import AddProduct from './Components/Pages/Dashboard/Add Product/AddProduct';
 import AllProducts from './Components/Pages/Dashboard/All Product/AllProducts';
 import Bookings from './Components/Pages/Dashboard/Boooking/Bookings';
+import BuyProducts from './Components/Pages/Dashboard/Buy Product/BuyProducts';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import QRCodeScanner from './Components/Pages/Dashboard/QR Code/QRCodeScanner';
 import Home from './Components/Pages/Home/Home';
@@ -38,6 +39,7 @@ function App() {
           <Route path="qrCode" element={<QRCodeScanner />} />
           <Route path="addProduct" element={<AddProduct />} />
           <Route path="allProduct" element={<AllProducts />} />
+          <Route path="buyProduct" element={<BuyProducts />} />
 
           <Route path="pdf" element={<Pdf />} />
         </Route>

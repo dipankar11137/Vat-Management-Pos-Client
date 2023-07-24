@@ -19,11 +19,15 @@ const BookProducts = () => {
   const time = currentTime.toLocaleTimeString();
 
   const totalPrice = bookings.reduce(
-    (acc, product) => acc + parseInt(product.price) * product.bookQuantity,
+    (acc, product) =>
+      acc +
+      parseInt(product.price) * product.bookQuantity -
+      specialDiscount -
+      discount,
     0
   );
   const vat = totalPrice * (vats / 100);
-  const newTotalPrice = totalPrice + vat - specialDiscount - discount;
+  const newTotalPrice = totalPrice + vat;
   const changeAmount = paid - newTotalPrice;
   useEffect(() => {
     fetch(`http://localhost:5000/booking`)
@@ -51,21 +55,39 @@ const BookProducts = () => {
   };
   const handleClear = () => {
     // console.log(bookings);
-    const changeUrl = { bookings, totalPrice, newTotalPrice, vat };
-    console.log(changeUrl);
-
-    // fetch(`http://localhost:5000/allProduct`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json',
-    //   },
-    //   body: JSON.stringify(changeUrl),
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     toast.success('Successfully Add This ');
-
-    //   });
+    const changeUrl = {
+      bookings,
+      totalPrice,
+      newTotalPrice,
+      vat,
+      date,
+      time,
+      discount,
+      specialDiscount,
+    };
+    // console.log(changeUrl);
+    const proceed = window.confirm('Are You Sure ?');
+    if (proceed) {
+      fetch(`http://localhost:5000/buys`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(changeUrl),
+      })
+        .then(res => res.json())
+        .then(data => {
+          // toast.success('Successfully Add This ');
+          const url = `http://localhost:5000/bookings`;
+          fetch(url, {
+            method: 'DELETE',
+          })
+            .then(res => res.json())
+            .then(data => {
+              toast.success('Successfully Clear');
+            });
+        });
+    }
 
     // const proceed = window.confirm('Are You Sure ?');
     // if (proceed) {
