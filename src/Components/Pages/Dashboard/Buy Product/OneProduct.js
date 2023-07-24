@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OneProduct = ({ singleProduct, index }) => {
+const OneProduct = ({ singleProduct, index, subTotal }) => {
   return (
     <tr>
       <th>{index}</th>
@@ -9,6 +9,7 @@ const OneProduct = ({ singleProduct, index }) => {
       </td>
       <td>{singleProduct?.name}</td>
       <td>{singleProduct?.price}</td>
+      <td>{singleProduct?.bookQuantity}</td>
     </tr>
   );
 };

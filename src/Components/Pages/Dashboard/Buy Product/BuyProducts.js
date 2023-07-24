@@ -16,6 +16,10 @@ const BuyProducts = () => {
     0
   );
   const totalVat = products.reduce((acc, product) => acc + product.vat, 0);
+  const totalQuantity = products.reduce(
+    (acc, product) => acc + product.bookings.length,
+    0
+  );
   return (
     <div>
       <div className="overflow-x-auto p-2 ">
@@ -50,6 +54,12 @@ const BuyProducts = () => {
         </h1>
         <div className="flex justify-end">
           <div className="bg-white text-black pt-4 pb-5 rounded-b-sm">
+            <div className="flex">
+              <h1 className="w-40 text-end font-semibold">Total Sel Item : </h1>
+              <h1 className="w-52 font-thin  text-end pr-2">
+                {<h1>{totalQuantity}</h1>}
+              </h1>
+            </div>
             <div className="flex">
               <h1 className="w-40 text-end font-semibold">Total Vat : </h1>
               <h1 className="w-52 font-thin  text-end pr-2">

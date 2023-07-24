@@ -4,6 +4,7 @@ import OneProduct from './OneProduct';
 
 const BuyProduct = ({ product, index }) => {
   const [open, setOpen] = useState(false);
+  console.log(product);
   return (
     <tr>
       <th>{index}</th>
@@ -33,6 +34,7 @@ const BuyProduct = ({ product, index }) => {
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Quantity</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -41,6 +43,7 @@ const BuyProduct = ({ product, index }) => {
                       key={singleProduct?._id}
                       singleProduct={singleProduct}
                       index={index + 1}
+                      subTotal={product?.totalPrice}
                     />
                   ))}
                 </tbody>
