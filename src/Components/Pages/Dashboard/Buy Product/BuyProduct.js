@@ -1,11 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import OneProduct from './OneProduct';
 
 const BuyProduct = ({ product, index }) => {
+  const [open, setOpen] = useState(false);
   return (
     <tr>
       <th>{index}</th>
       <td>{product?.name || 'NAN'}</td>
-      <td>{product?.bookings.length}</td>
+      <td>
+        <div className="flex ml-10">
+          {product?.bookings.length}{' '}
+          {open ? (
+            <IoIosArrowUp
+              onClick={() => setOpen(false)}
+              className="text-xl ml-5 hover:cursor-pointer"
+            />
+          ) : (
+            <IoIosArrowDown
+              onClick={() => setOpen(true)}
+              className="text-xl ml-5 hover:cursor-pointer"
+            />
+          )}
+        </div>
+        {open && (
+          <div>
+            <div className="overflow-x-auto">
+              <table className="table text-center">
+                <thead>
+                  <tr>
+                    <th>Index</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {product.bookings.map((singleProduct, index) => (
+                    <OneProduct
+                      key={singleProduct?._id}
+                      singleProduct={singleProduct}
+                      index={index + 1}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            ;
+          </div>
+        )}
+      </td>
       <td>{product?.date}</td>
       <td>{product?.time}</td>
       <td>{product?.discount}</td>
