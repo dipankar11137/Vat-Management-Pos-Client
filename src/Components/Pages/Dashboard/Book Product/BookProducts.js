@@ -50,17 +50,34 @@ const BookProducts = () => {
     }
   };
   const handleClear = () => {
-    const proceed = window.confirm('Are You Sure ?');
-    if (proceed) {
-      const url = `http://localhost:5000/bookings`;
-      fetch(url, {
-        method: 'DELETE',
-      })
-        .then(res => res.json())
-        .then(data => {
-          toast.success('Successfully Clear');
-        });
-    }
+    // console.log(bookings);
+    const changeUrl = { bookings, totalPrice, newTotalPrice, vat };
+    console.log(changeUrl);
+
+    // fetch(`http://localhost:5000/allProduct`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type': 'application/json',
+    //   },
+    //   body: JSON.stringify(changeUrl),
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     toast.success('Successfully Add This ');
+
+    //   });
+
+    // const proceed = window.confirm('Are You Sure ?');
+    // if (proceed) {
+    //   const url = `http://localhost:5000/bookings`;
+    //   fetch(url, {
+    //     method: 'DELETE',
+    //   })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       toast.success('Successfully Clear');
+    //     });
+    // }
   };
   // console.log(bookings);
   return (
