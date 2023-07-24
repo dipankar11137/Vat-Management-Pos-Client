@@ -18,7 +18,7 @@ const BuyProducts = () => {
   const totalVat = products.reduce((acc, product) => acc + product.vat, 0);
   return (
     <div>
-      <div className="overflow-x-auto p-2">
+      <div className="overflow-x-auto p-2 ">
         <table className="table table-xs w-full text-xs text-black text-center">
           <thead>
             <tr>
@@ -45,7 +45,7 @@ const BuyProducts = () => {
             ))}
           </tbody>
         </table>
-        <h1 className="bg-white text-black mt-3 text-end pr-52 font-bold text-xl underline">
+        <h1 className="bg-white text-black pt-3 text-end pr-52 font-bold text-xl underline">
           Total Amount :
         </h1>
         <div className="flex justify-end">
