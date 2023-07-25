@@ -146,6 +146,23 @@ const Dashboard = () => {
                   </span>
                 </Link>
               </li>
+              <li
+                onClick={() => setSelectedButton('Button 5')}
+                className={
+                  selectedButton === 'Button 5'
+                    ? 'bg-slate-900 text-black rounded-l-lg'
+                    : ''
+                }
+              >
+                <Link className="aLink" to="/buyProduct">
+                  <span className="icon  ">
+                    <BsCartPlusFill className="text-2xl mt-4 ml-2 pt-1" />
+                  </span>
+                  <span className="title hover:animate-pulse font-bold ">
+                    Buy Items
+                  </span>
+                </Link>
+              </li>
 
               <li className="lg:mt-28 md:mt-32">
                 <Link onClick={handleSignOut} className="aLink ">
