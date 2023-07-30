@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  useCreateUserWithEmailAndPassword,
-  useSignInWithGoogle,
-  useUpdateProfile,
+    useCreateUserWithEmailAndPassword,
+    useSignInWithGoogle,
+    useUpdateProfile,
 } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -41,7 +41,7 @@ const CreateAccount = () => {
       img: data.photo,
       shipCode: data.shipCode,
     };
-    fetch(`http://localhost:5000/create-user/${data?.email}`, {
+    fetch(`https://vat-management-pos.onrender.com/create-user/${data?.email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

@@ -5,7 +5,7 @@ const BuyProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/buys')
+    fetch('https://vat-management-pos.onrender.com/buys')
       .then(res => res.json())
       .then(data => setProducts(data));
   }, [products]);

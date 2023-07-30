@@ -31,7 +31,7 @@ const AddProduct = () => {
         const changeUrl = { ...data, img: image };
         console.log(changeUrl);
 
-        fetch(`http://localhost:5000/allProduct`, {
+        fetch(`https://vat-management-pos.onrender.com/allProduct`, {
           method: 'POST',
           headers: {
             'content-type': 'application/json',

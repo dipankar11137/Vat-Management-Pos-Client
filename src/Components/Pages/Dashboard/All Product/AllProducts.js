@@ -6,13 +6,13 @@ const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [singleProduct, setSingleProduct] = useState({});
   useEffect(() => {
-    fetch('http://localhost:5000/allProduct')
+    fetch('https://vat-management-pos.onrender.com/allProduct')
       .then(res => res.json())
       .then(data => setProducts(data));
   }, [products]);
 
   const handleEdit = id => {
-    fetch(`http://localhost:5000/product/${id}`)
+    fetch(`https://vat-management-pos.onrender.com/product/${id}`)
       .then(res => res.json())
       .then(data => setSingleProduct(data));
   };
@@ -22,7 +22,7 @@ const AllProducts = () => {
       parseInt(event.target.quantity.value) + parseInt(singleProduct?.quantity);
     // console.log(newQuantity);
     const updateQuantity = { quantity: newQuantity };
-    fetch(`http://localhost:5000/productId/${singleProduct?._id}`, {
+    fetch(`https://vat-management-pos.onrender.com/productId/${singleProduct?._id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -46,7 +46,7 @@ const AllProducts = () => {
         parseInt(event.target.quantity.value);
 
       const updateQuantity = { quantity: newQuantity };
-      fetch(`http://localhost:5000/productId/${singleProduct?._id}`, {
+      fetch(`https://vat-management-pos.onrender.com/productId/${singleProduct?._id}`, {
         method: 'PUT',
         headers: {
           'content-type': 'application/json',
@@ -66,7 +66,7 @@ const AllProducts = () => {
     const handleDelete = id => {
       const proceed = window.confirm('Are You Sure ?');
       if (proceed) {
-        const url = `http://localhost:5000/product/${id}`;
+        const url = `https://vat-management-pos.onrender.com/product/${id}`;
         fetch(url, {
           method: 'DELETE',
         })

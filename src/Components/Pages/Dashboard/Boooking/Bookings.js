@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Booking from "./Booking";
 import { toast } from "react-toastify";
+import Booking from "./Booking";
 
 const Bookings = () => {
   const [bookings, setBooking] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/bookings")
+    fetch("https://vat-management-pos.onrender.com/bookings")
       .then((res) => res.json())
       .then((data) => setBooking(data));
   }, [bookings]);
@@ -13,7 +13,7 @@ const Bookings = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are You Sure ?");
     if (proceed) {
-      const url = `http://localhost:5000/bookings/${id}`;
+      const url = `https://vat-management-pos.onrender.com/bookings/${id}`;
       fetch(url, {
         method: "DELETE",
       })

@@ -10,6 +10,7 @@ const AllProduct = ({
   handleDecrease,
   handleDelete,
 }) => {
+  console.log(product)
   return (
     <tr>
       <th className="bg-slate-800">{index}</th>

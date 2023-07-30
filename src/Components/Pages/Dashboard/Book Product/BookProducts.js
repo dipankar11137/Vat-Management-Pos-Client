@@ -31,7 +31,7 @@ const BookProducts = () => {
   const newTotalPrice = totalPrice + vat;
   const changeAmount = paid - newTotalPrice;
   useEffect(() => {
-    fetch(`http://localhost:5000/booking`)
+    fetch(`https://vat-management-pos.onrender.com/booking`)
       .then(res => res.json())
       .then(data => setBookings(data));
   }, [bookings]);
@@ -41,7 +41,7 @@ const BookProducts = () => {
   // const handleRemove = id => {
   //   const proceed = window.confirm('Are You Sure ?');
   //   if (proceed) {
-  //     const url = `http://localhost:5000/booking/${id}`;
+  //     const url = `https://vat-management-pos.onrender.com/booking/${id}`;
   //     fetch(url, {
   //       method: 'DELETE',
   //     })
@@ -71,7 +71,7 @@ const BookProducts = () => {
     // console.log(changeUrl);
     const proceed = window.confirm('Are You Sure ?');
     if (proceed) {
-      fetch(`http://localhost:5000/buys`, {
+      fetch(`https://vat-management-pos.onrender.com/buys`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -81,7 +81,7 @@ const BookProducts = () => {
         .then(res => res.json())
         .then(data => {
           // toast.success('Successfully Add This ');
-          const url = `http://localhost:5000/bookings`;
+          const url = `https://vat-management-pos.onrender.com/bookings`;
           fetch(url, {
             method: 'DELETE',
           })

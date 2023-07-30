@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [selectedButton, setSelectedButton] = useState('Button 2');
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${authUser?.email}`)
+    fetch(`https://vat-management-pos.onrender.com/user/${authUser?.email}`)
       .then(res => res.json())
       .then(data => setUsers(data));
   }, [users, authUser?.email]);
@@ -146,7 +146,7 @@ const Dashboard = () => {
                   </span>
                 </Link>
               </li>
-              <li
+              {/* <li
                 onClick={() => setSelectedButton('Button 5')}
                 className={
                   selectedButton === 'Button 5'
@@ -162,9 +162,9 @@ const Dashboard = () => {
                     Buy Items
                   </span>
                 </Link>
-              </li>
+              </li> */}
 
-              <li className="lg:mt-28 md:mt-32">
+              <li className="lg:mt-24 md:mt-20">
                 <Link onClick={handleSignOut} className="aLink ">
                   <span className="icon">
                     <FaSignOutAlt className="text-2xl mt-5 ml-2 " />
