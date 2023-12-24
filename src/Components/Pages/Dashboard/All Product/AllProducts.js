@@ -16,53 +16,96 @@ const AllProducts = () => {
       .then(res => res.json())
       .then(data => setSingleProduct(data));
   };
-  const handleRestock = event => {
-    event.preventDefault();
-    const newQuantity =
-      parseInt(event.target.quantity.value) + parseInt(singleProduct?.quantity);
-    // console.log(newQuantity);
-    const updateQuantity = { quantity: newQuantity };
-    fetch(`https://vat-management-pos.onrender.com/productId/${singleProduct?._id}`, {
-      method: 'PUT',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(updateQuantity),
-    })
-      .then(res => res.json())
-      .then(data => {
-        toast.success('Restock Is Successfully');
-        event.target.reset();
-      });
-  };
+    const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
-  const handleDecrease = event => {
-    event.preventDefault();
-    if (
-      parseInt(singleProduct?.quantity) >= parseInt(event.target.quantity.value)
-    ) {
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+        setCurrentDateTime(new Date());
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+    }, []); // Run effect once on mount
+
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    };
+
+    const formattedDateTime = currentDateTime.toLocaleString(
+      undefined,
+      options
+    );
+
+    const updateDateAndProduct = updateProduct => {
+      console.log(updateProduct);
+    };
+
+    const handleRestock = event => {
+      event.preventDefault();
       const newQuantity =
-        parseInt(singleProduct?.quantity) -
-        parseInt(event.target.quantity.value);
-
+        parseInt(event.target.quantity.value) +
+        parseInt(singleProduct?.quantity);
+      // console.log(newQuantity);
       const updateQuantity = { quantity: newQuantity };
-      fetch(`https://vat-management-pos.onrender.com/productId/${singleProduct?._id}`, {
-        method: 'PUT',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(updateQuantity),
-      })
+      const updateProduct = {
+        singleProduct,
+        updateQuantity: event.target.quantity.value,
+        date: formattedDateTime,
+      };
+      fetch(
+        `https://vat-management-pos.onrender.com/productId/${singleProduct?._id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(updateQuantity),
+        }
+      )
         .then(res => res.json())
         .then(data => {
-          toast.success('Decrease Is Successfully');
+          updateDateAndProduct(updateProduct);
+          toast.success('Restock Is Successfully');
           event.target.reset();
         });
-    } else {
-      toast.error('The new value is greater than the previous value');
-      event.target.reset();
-    }
-  };
+    };
+
+    const handleDecrease = event => {
+      event.preventDefault();
+      if (
+        parseInt(singleProduct?.quantity) >=
+        parseInt(event.target.quantity.value)
+      ) {
+        const newQuantity =
+          parseInt(singleProduct?.quantity) -
+          parseInt(event.target.quantity.value);
+        const updateQuantity = { quantity: newQuantity };
+
+        fetch(
+          `https://vat-management-pos.onrender.com/productId/${singleProduct?._id}`,
+          {
+            method: 'PUT',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify(updateQuantity),
+          }
+        )
+          .then(res => res.json())
+          .then(data => {
+            toast.success('Decrease Is Successfully');
+            event.target.reset();
+          });
+      } else {
+        toast.error('The new value is greater than the previous value');
+        event.target.reset();
+      }
+    };
     const handleDelete = id => {
       const proceed = window.confirm('Are You Sure ?');
       if (proceed) {
