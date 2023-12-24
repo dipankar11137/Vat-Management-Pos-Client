@@ -8,9 +8,9 @@ const BuyProduct = ({ product, index }) => {
 
   return (
     <tr>
-      <th>{index}</th>
-      <td>{product?.name || 'NAN'}</td>
-      <td>
+      <th className="bg-slate-800">{index}</th>
+      <td className="bg-slate-800">{product?.name || 'NAN'}</td>
+      <td className="bg-slate-800">
         <div className="flex ml-10">
           {product?.bookings.length}{' '}
           {open ? (
@@ -28,14 +28,14 @@ const BuyProduct = ({ product, index }) => {
         {open && (
           <div>
             <div className="overflow-x-auto">
-              <table className="table text-center">
+              <table className="table text-center ">
                 <thead>
                   <tr>
-                    <th>Index</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th className="bg-blue-600">Index</th>
+                    <th className="bg-blue-600">Image</th>
+                    <th className="bg-blue-600">Name</th>
+                    <th className="bg-blue-600">Price</th>
+                    <th className="bg-blue-600">Quantity</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -50,18 +50,17 @@ const BuyProduct = ({ product, index }) => {
                 </tbody>
               </table>
             </div>
-            ;
           </div>
         )}
       </td>
-      <td>{product?.date}</td>
-      <td>{product?.time}</td>
-      <td>{product?.discount}</td>
-      <td>{product?.specialDiscount}</td>
-      <td>{product?.totalPrice}</td>
-      <td>{product?.vats}</td>
-      <td>{product?.vat}</td>
-      <td>{product?.newTotalPrice}</td>
+      <td className="bg-slate-800">{product?.date}</td>
+      <td className="bg-slate-800">{product?.time}</td>
+      <td className="bg-slate-800">{product?.discount}</td>
+      <td className="bg-slate-800">{product?.specialDiscount}</td>
+      <td className="bg-slate-800">{product?.totalPrice}</td>
+      <td className="bg-slate-800">{product?.vats}</td>
+      <td className="bg-slate-800">{product?.vat}</td>
+      <td className="bg-slate-800">{product?.newTotalPrice}</td>
     </tr>
   );
 };

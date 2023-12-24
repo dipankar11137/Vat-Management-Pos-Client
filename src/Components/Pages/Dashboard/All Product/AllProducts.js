@@ -42,7 +42,17 @@ const AllProducts = () => {
     );
 
     const updateDateAndProduct = updateProduct => {
-      console.log(updateProduct);
+      fetch(`https://vat-management-pos.onrender.com/updateProduct`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(updateProduct),
+      })
+        .then(res => res.json())
+        .then(data => {
+          toast.success('Restock Is Successfully');
+        });
     };
 
     const handleRestock = event => {
@@ -54,8 +64,9 @@ const AllProducts = () => {
       const updateQuantity = { quantity: newQuantity };
       const updateProduct = {
         singleProduct,
-        updateQuantity: event.target.quantity.value,
+        updateQuantity: newQuantity,
         date: formattedDateTime,
+        lastQuantityAdd: event.target.quantity.value,
       };
       fetch(
         `https://vat-management-pos.onrender.com/productId/${singleProduct?._id}`,
@@ -70,7 +81,6 @@ const AllProducts = () => {
         .then(res => res.json())
         .then(data => {
           updateDateAndProduct(updateProduct);
-          toast.success('Restock Is Successfully');
           event.target.reset();
         });
     };

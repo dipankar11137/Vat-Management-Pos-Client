@@ -12,6 +12,7 @@ import Bookings from './Components/Pages/Dashboard/Boooking/Bookings';
 import BuyProducts from './Components/Pages/Dashboard/Buy Product/BuyProducts';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import QRCodeScanner from './Components/Pages/Dashboard/QR Code/QRCodeScanner';
+import UpdateProducts from './Components/Pages/Dashboard/UpdateProduct/UpdateProducts';
 import Home from './Components/Pages/Home/Home';
 import Pdf from './Components/Pages/Pdf/Pdf';
 import NotFound from './Components/Share/NotFound';
@@ -40,6 +41,7 @@ function App() {
           <Route path="addProduct" element={<AddProduct />} />
           <Route path="allProduct" element={<AllProducts />} />
           <Route path="buyProduct" element={<BuyProducts />} />
+          <Route path="updateProduct" element={<UpdateProducts />} />
 
           <Route path="pdf" element={<Pdf />} />
         </Route>

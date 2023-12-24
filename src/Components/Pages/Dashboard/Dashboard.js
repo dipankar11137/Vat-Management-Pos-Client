@@ -5,6 +5,7 @@ import { AiFillCamera } from 'react-icons/ai';
 import { BsCartPlusFill } from 'react-icons/bs';
 import { FaHome, FaProductHunt, FaSignOutAlt } from 'react-icons/fa';
 import { MdAddchart } from 'react-icons/md';
+import { RxUpdate } from 'react-icons/rx';
 import { Link, Outlet } from 'react-router-dom';
 import pos from '../../../Images/Cargo logo/pos1.png';
 import auth from '../../../firebase.init';
@@ -146,8 +147,25 @@ const Dashboard = () => {
                   </span>
                 </Link>
               </li>
+              <li
+                onClick={() => setSelectedButton('Button 6')}
+                className={
+                  selectedButton === 'Button 6'
+                    ? 'bg-slate-900 text-black rounded-l-lg'
+                    : ''
+                }
+              >
+                <Link className="aLink" to="/updateProduct">
+                  <span className="icon  ">
+                    <RxUpdate className="text-2xl mt-4 ml-2 pt-1" />
+                  </span>
+                  <span className="title hover:animate-pulse font-bold ">
+                    update Product
+                  </span>
+                </Link>
+              </li>
 
-              <li className="lg:mt-24 md:mt-20">
+              <li className="">
                 <Link onClick={handleSignOut} className="aLink ">
                   <span className="icon">
                     <FaSignOutAlt className="text-2xl mt-5 ml-2 " />

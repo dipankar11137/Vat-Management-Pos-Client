@@ -26,20 +26,20 @@ const BuyProducts = () => {
   return (
     <div>
       <div ref={document} className="overflow-x-auto p-2 ">
-        <table className="table table-xs w-full text-xs text-black text-center">
+        <table className="table table-xs w-full text-xs text-white text-center">
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Product Quantity</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>DIscount</th>
-              <th>Spacial Discount</th>
-              <th>Sub Amount</th>
-              <th>Vat % </th>
-              <th>Vat</th>
-              <th>Total Price</th>
+              <th className="bg-blue-900"></th>
+              <th className="bg-blue-900">Name</th>
+              <th className="bg-blue-900">Product Quantity</th>
+              <th className="bg-blue-900">Date</th>
+              <th className="bg-blue-900">Time</th>
+              <th className="bg-blue-900">DIscount</th>
+              <th className="bg-blue-900">Spacial Discount</th>
+              <th className="bg-blue-900">Sub Amount</th>
+              <th className="bg-blue-900">Vat % </th>
+              <th className="bg-blue-900">Vat</th>
+              <th className="bg-blue-900">Total Price</th>
             </tr>
           </thead>
           <tbody>
@@ -52,11 +52,11 @@ const BuyProducts = () => {
             ))}
           </tbody>
         </table>
-        <h1 className="bg-white text-black pt-3 text-end pr-52 font-bold text-xl underline">
+        <h1 className="bg-blue-700 text-white pt-3 text-end pr-52 font-bold text-xl underline">
           Total Amount :
         </h1>
         <div className="flex justify-end">
-          <div className="bg-white text-black pt-4 pb-5 rounded-b-sm">
+          <div className="bg-blue-900 text-white pt-4 pb-5 rounded-b-sm">
             <div className="flex">
               <h1 className="w-40 text-end font-semibold">Total Sel Item : </h1>
               <h1 className="w-52 font-thin  text-end pr-2">
