@@ -41,7 +41,7 @@ const CreateAccount = () => {
       img: data.photo,
       shipCode: data.shipCode,
     };
-    fetch(`https://vat-management-pos.onrender.com/create-user/${data?.email}`, {
+    fetch(`http://localhost:5000/create-user/${data?.email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

@@ -5,23 +5,23 @@ import Booking from "./Booking";
 const Bookings = () => {
   const [bookings, setBooking] = useState([]);
   useEffect(() => {
-    fetch("https://vat-management-pos.onrender.com/bookings")
-      .then((res) => res.json())
-      .then((data) => setBooking(data));
+    fetch('http://localhost:5000/bookings')
+      .then(res => res.json())
+      .then(data => setBooking(data));
   }, [bookings]);
 
-  const handleDelete = (id) => {
-    const proceed = window.confirm("Are You Sure ?");
+  const handleDelete = id => {
+    const proceed = window.confirm('Are You Sure ?');
     if (proceed) {
-      const url = `https://vat-management-pos.onrender.com/bookings/${id}`;
+      const url = `http://localhost:5000/bookings/${id}`;
       fetch(url, {
-        method: "DELETE",
+        method: 'DELETE',
       })
-        .then((res) => res.json())
-        .then((data) => {
-          const remaining = bookings.filter((booking) => booking._id !== id);
+        .then(res => res.json())
+        .then(data => {
+          const remaining = bookings.filter(booking => booking._id !== id);
           setBooking(remaining);
-          toast.success("Successfully Delivered ");
+          toast.success('Successfully Delivered ');
         });
     }
   };

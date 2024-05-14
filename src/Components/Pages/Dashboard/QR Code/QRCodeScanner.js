@@ -17,7 +17,7 @@ const QRCodeScanner = () => {
   );
 
   useEffect(() => {
-    fetch(`https://vat-management-pos.onrender.com/allProducts/${data}`)
+    fetch(`http://localhost:5000/allProducts/${data}`)
       .then(res => res.json())
       .then(data => setBookProduct(data));
   }, [data]);
@@ -26,7 +26,7 @@ const QRCodeScanner = () => {
     const newQuantity = parseInt(bookProduct?.quantity) - parseInt(quantity);
     // console.log(newQuantity);
     const updateQuantity = { quantity: newQuantity };
-    fetch(`https://vat-management-pos.onrender.com/productId/${id}`, {
+    fetch(`http://localhost:5000/productId/${id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -49,7 +49,7 @@ const QRCodeScanner = () => {
       };
       // console.log(bookData);
 
-      fetch(`https://vat-management-pos.onrender.com/bookings`, {
+      fetch(`http://localhost:5000/bookings`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

@@ -5,7 +5,6 @@ import { AiFillCamera } from 'react-icons/ai';
 import { BsCartPlusFill } from 'react-icons/bs';
 import { FaHome, FaProductHunt, FaSignOutAlt } from 'react-icons/fa';
 import { MdAddchart } from 'react-icons/md';
-import { RxUpdate } from 'react-icons/rx';
 import { Link, Outlet } from 'react-router-dom';
 import pos from '../../../Images/Cargo logo/pos1.png';
 import auth from '../../../firebase.init';
@@ -18,7 +17,7 @@ const Dashboard = () => {
   const [selectedButton, setSelectedButton] = useState('Button 2');
 
   useEffect(() => {
-    fetch(`https://vat-management-pos.onrender.com/user/${authUser?.email}`)
+    fetch(`http://localhost:5000/user/${authUser?.email}`)
       .then(res => res.json())
       .then(data => setUsers(data));
   }, [users, authUser?.email]);
@@ -33,7 +32,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="bg-slate-900 text-white">
+    <div className="bg-slate-900 text-white ">
       <div>
         <div className="drawer drawer-mobile">
           <input
@@ -147,7 +146,7 @@ const Dashboard = () => {
                   </span>
                 </Link>
               </li>
-              <li
+              {/* <li
                 onClick={() => setSelectedButton('Button 6')}
                 className={
                   selectedButton === 'Button 6'
@@ -163,7 +162,7 @@ const Dashboard = () => {
                     update Product
                   </span>
                 </Link>
-              </li>
+              </li> */}
 
               <li className="">
                 <Link onClick={handleSignOut} className="aLink ">

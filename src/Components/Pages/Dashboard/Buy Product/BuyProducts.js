@@ -5,7 +5,7 @@ const BuyProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('https://vat-management-pos.onrender.com/buys')
+    fetch('http://localhost:5000/buys')
       .then(res => res.json())
       .then(data => setProducts(data));
   }, [products]);
@@ -25,6 +25,9 @@ const BuyProducts = () => {
   const pdfFilename = products?.name ? `${products.name}.pdf` : 'document.pdf';
   return (
     <div>
+      <div className="text-3xl my-5 text-center font-semibold">
+        <h1>Buy Product</h1>
+      </div>
       <div ref={document} className="overflow-x-auto p-2 ">
         <table className="table table-xs w-full text-xs text-white text-center">
           <thead>
@@ -43,13 +46,16 @@ const BuyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => (
-              <BuyProduct
-                key={product._id}
-                product={product}
-                index={index + 1}
-              ></BuyProduct>
-            ))}
+            {products
+              .slice(0, 10)
+              .reverse()
+              .map((product, index) => (
+                <BuyProduct
+                  key={product._id}
+                  product={product}
+                  index={index + 1}
+                ></BuyProduct>
+              ))}
           </tbody>
         </table>
         <h1 className="bg-blue-700 text-white pt-3 text-end pr-52 font-bold text-xl underline">
@@ -66,13 +72,13 @@ const BuyProducts = () => {
             <div className="flex">
               <h1 className="w-40 text-end font-semibold">Total Vat : </h1>
               <h1 className="w-52 font-thin  text-end pr-2">
-                {<h1>{totalVat} .00</h1>}
+                <h1>{parseFloat(totalVat).toFixed(2)}</h1>
               </h1>
             </div>
             <div className="flex">
               <h1 className="w-40 text-end font-semibold">Total Price : </h1>
               <h1 className="w-52 font-thin  text-end pr-2">
-                {<h1>{totalPrice} .00</h1>}
+                <h1>{parseFloat(totalPrice).toFixed(2)}</h1>
               </h1>
             </div>
             {/* <ReactToPdf targetRef={document} filename={pdfFilename}>

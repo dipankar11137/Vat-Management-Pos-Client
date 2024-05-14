@@ -4,7 +4,7 @@ import OneProduct from './OneProduct';
 
 const BuyProduct = ({ product, index }) => {
   const [open, setOpen] = useState(false);
-  console.log(product);
+  // console.log(product);
 
   return (
     <tr>

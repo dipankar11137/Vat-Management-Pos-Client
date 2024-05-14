@@ -31,7 +31,7 @@ const AddProduct = () => {
         const changeUrl = { ...data, img: image };
         console.log(changeUrl);
 
-        fetch(`https://vat-management-pos.onrender.com/allProduct`, {
+        fetch(`http://localhost:5000/allProduct`, {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
@@ -47,15 +47,15 @@ const AddProduct = () => {
   };
   return (
     <div className=" pb-20">
-      {/* <h2 className="mt-5 ml-10 font-bold text-4xl text-center text-orange-500 uppercase">
-        Please Add A Technician
-      </h2> */}
+      <h2 className="mt-5 -ml-20 font-bold text-4xl text-center text-orange-500 uppercase">
+        Add A Product
+      </h2>
       <div className=" p-5 rounded-2xl w-11/12 mt-5 ml-5 ">
         <form
           className=" flex justify-center gap-4"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div>
+          <div className="border-[1px] p-2 rounded-lg">
             <label className="label">
               <span className="label-text text-xl font-semibold text-white">
                 Name

@@ -4,7 +4,7 @@ import UpdateProduct from './UpdateProduct';
 const UpdateProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch('https://vat-management-pos.onrender.com/updateProduct')
+    fetch('http://localhost:5000/updateProduct')
       .then(res => res.json())
       .then(data => setProducts(data));
   }, [products]);
